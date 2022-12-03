@@ -16,8 +16,8 @@ return new class extends Migration
         Schema::create('group', function (Blueprint $table) {
             $table->id();
             $table->timestamps();
-            $table->integer("group_id")->unsigned();
-            $table->integer("customers")->unsigned();
+            $table->string("group_name");
+            $table->foreignIdFor(\App\Models\Customer::class);
         });
     }
 

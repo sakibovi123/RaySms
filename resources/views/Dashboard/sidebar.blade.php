@@ -14,13 +14,13 @@
             <i class="fas fa-sticky-note mr-3"></i>
             SMS TEMPLATES
         </a>
-        <a href="" class="flex items-center text-white opacity-75 hover:opacity-100 py-4 pl-6 nav-item">
+        <a href="{{ url('/sender-numbers') }}" class="flex items-center text-white opacity-75 hover:opacity-100 py-4 pl-6 nav-item">
             <i class="fas fa-table mr-3"></i>
             SENDER NUMBERS
         </a>
-        <a href="" class="flex items-center text-white opacity-75 hover:opacity-100 py-4 pl-6 nav-item">
+        <a href="{{ url('/customers') }}" class="flex items-center text-white opacity-75 hover:opacity-100 py-4 pl-6 nav-item">
             <i class="fas fa-align-left mr-3"></i>
-            EXPORT CUSTOMERS
+            IMPORT CUSTOMERS
         </a>
         <a href="" class="flex items-center text-white opacity-75 hover:opacity-100 py-4 pl-6 nav-item">
             <i class="fas fa-tablet-alt mr-3"></i>
