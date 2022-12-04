@@ -22,6 +22,8 @@ class CustomerController extends Controller
         // Excel::import(new UsersImport,request()->file('file'));
 
         Excel::import(new CustomerImport, request()->file('excel_file'));
+
+
         return back();
     }
 

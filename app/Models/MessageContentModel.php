@@ -16,4 +16,8 @@ class MessageContentModel extends Model
         "content"
     ];
 
+    public function sendmessage() {
+        return $this->hasMany(SendMessage::class);
+    }
+
 }

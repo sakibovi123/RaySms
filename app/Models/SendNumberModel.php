@@ -12,4 +12,8 @@ class SendNumberModel extends Model
     protected $table = "sendernumber";
 
     protected $fillable = [ "number" ];
+
+    public function sendmessage () {
+        return $this->belongsToMany(SendMessage::class);
+    }
 }

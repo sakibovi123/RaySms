@@ -22,7 +22,7 @@
             <i class="fas fa-align-left mr-3"></i>
             IMPORT CUSTOMERS
         </a>
-        <a href="" class="flex items-center text-white opacity-75 hover:opacity-100 py-4 pl-6 nav-item">
+        <a href="{{ url("/messages") }}" class="flex items-center text-white opacity-75 hover:opacity-100 py-4 pl-6 nav-item">
             <i class="fas fa-tablet-alt mr-3"></i>
             SEND BULK MESSAGE
         </a>

@@ -38,3 +38,10 @@ Route::delete("/delete-number/{id}/", [\App\Http\Controllers\SenderNumberControl
 Route::get("/customers", [\App\Http\Controllers\CustomerController::class, 'index']);
 Route::post("/import-customers", [\App\Http\Controllers\CustomerController::class, 'importCustomers']);
 Route::delete("/delete-customer/{id}/", [\App\Http\Controllers\CustomerController::class, 'destroy']);
+
+
+// sendsms url
+Route::get("/messages", [\App\Http\Controllers\SendMessageController::class, 'template']);
+Route::get("/send-message", [\App\Http\Controllers\SendMessageController::class, 'create']);
+Route::post("/send-message-to-customers", [\App\Http\Controllers\SendMessageController::class, 'send']);
+Route::get("/view-details/{id}/", [\App\Http\Controllers\SendMessageController::class, 'showDetails']);

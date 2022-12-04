@@ -13,7 +13,8 @@ class Customer extends Model
 
     protected $fillable = [ "customer_phone" ];
 
-    public function group(){
-        return $this->belongsToMany(GroupModel::class);
+    public function sendmessage () {
+        return $this->belongsToMany(SendMessage::class, "customer_send_message");
     }
+
 }
