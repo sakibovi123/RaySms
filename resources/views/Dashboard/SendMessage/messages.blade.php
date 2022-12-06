@@ -26,6 +26,10 @@
                     </div>
                 @endif
                 <div class="bg-white overflow-auto">
+                    @if(session()->has("numbers"))
+                        {{ session()->get("numbers") }}
+                    @endif
+
                     @if($sent)
                         <table class="min-w-full bg-white">
                             <thead class="bg-gray-800 text-white">

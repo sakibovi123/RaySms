@@ -6,7 +6,9 @@ use App\Models\Customer;
 use App\Models\MessageContentModel;
 use App\Models\SendMessage;
 use App\Models\SendNumberModel;
+use Exception;
 use Illuminate\Http\Request;
+use Twilio\Rest\Client;
 
 
 class SendMessageController extends Controller
@@ -31,23 +33,36 @@ class SendMessageController extends Controller
     }
 
     public function send(Request $request) {
+        $twilio_sid = getenv("TWILIO_SID");
+        $twilio_token = getenv("TWILIO_TOKEN");
+
+        $senderNumber = SendNumberModel::where("number", $request->get("sender_number"))->first();
         $sendmessage = new SendMessage();
-
-
         $sendmessage->template_id = $request->get("template_id");
-        $sendmessage->sender_number_id = $request->get("sender_number_id");
-
+        $sendmessage->sender_number_id = $senderNumber->id;
+        $arr = [];
         $sendmessage->save();
-         $customers = [Customer::all()];
-//        $customers = [$request->get("customer_id[]")];
-        // $sendmessage->customer()->attach([$customers]);
+        $customers = Customer::whereIn("id", $request->input("customer_id"))->get();
+
         foreach($customers as $customer){
-            $sendmessage->customer()->attach($customer);
+            $sendmessage->customer()->attach($customer->id);
+            try{
+                $client = new Client($twilio_sid, $twilio_token);
+                $client->messages->create(
+                    $customer->customer_phone,
+                    [
+                        "from" => $senderNumber->number,
+                        "body" => $sendmessage->messageContent->content,
+                    ]
+                );
+
+                $arr[] = $customer->customer_phone;
+            } catch(Exception $e){
+                echo $e->getMessage();
+                exit();
+            }
         }
-
-
-
-        return redirect("")->with("message", "Sms sent!");
+        return redirect("/messages")->with("numbers", implode(", ", $arr));
     }
 
     public function showDetails($id) {

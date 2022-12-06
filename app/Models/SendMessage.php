@@ -18,11 +18,11 @@ class SendMessage extends Model
     ];
 
     public function messageContent() {
-        return $this->belongsTo(MessageContentModel::class);
+        return $this->belongsTo(MessageContentModel::class, "template_id");
     }
 
     public function senderNumber() {
-        return $this->belongsTo(SendNumberModel::class);
+        return $this->belongsTo(SendNumberModel::class, "sender_number_id");
     }
 
     public function customer() {
