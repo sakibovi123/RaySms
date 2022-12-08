@@ -67,7 +67,6 @@ class SendMessageController extends Controller
 
     public function showDetails($id) {
         $sends = SendMessage::find($id)->customer;
-
         return $sends;
     }
 

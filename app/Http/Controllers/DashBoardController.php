@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\CustomerSendMessage;
 use Illuminate\Http\Request;
 
 class DashBoardController extends Controller
@@ -13,7 +14,10 @@ class DashBoardController extends Controller
      */
     public function index()
     {
-        return view("Dashboard.dashboard");
+        $allSents = CustomerSendMessage::all();
+        return view("Dashboard.dashboard", [
+            "allSents" => $allSents
+        ]);
     }
 
     /**
