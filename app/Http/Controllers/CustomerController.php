@@ -27,6 +27,22 @@ class CustomerController extends Controller
         return back();
     }
 
+    public function create(){
+        return view("Dashboard.Customer.create_customer");
+    }
+
+    public function create_customer_manually(Request $request){
+        $customer_phone = $request->input("customer_phone");
+
+        if( strlen($customer_phone) > 0 ){
+            Customer::create([
+                "customer_phone" => $customer_phone
+            ]);
+
+            return back();
+        }
+    }
+
     public function destroy($id){
         $customer = Customer::find($id);
         $customer->delete();

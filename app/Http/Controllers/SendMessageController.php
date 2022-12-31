@@ -70,4 +70,35 @@ class SendMessageController extends Controller
         return $sends;
     }
 
+
+    public function send_sms_automatically(Request $request){
+        $twilio_sid = getenv("TWILIO_SID");
+        $twilio_token = getenv("TWILIO_TOKEN");
+
+        $from = $request->get("+13085299517");
+        $content = $request->get("Shaon ekta magi madarchod ekta");
+
+        // $customers = Customer::whereNotNull("pay_out");
+        $customers = Customer::all();
+        foreach ($customers as $customer){
+            try{
+                $client = new Client("ACc72efb4c899abd80ad51d30c04f26b24", "a407119d3969d3901b1db160ff1470d6");
+                $client->messages->create(
+                   $customer->customer_phone,
+                    [
+                        "from" => "+13085299517",
+                        "body" => "TESTING MESSAGE CONTENT BUY TEST PRODUCTS MY FRIEND THANK YOU AND FUCK YOU",
+                    ]
+                );
+
+                return response()->json([
+                    "status" => true
+                ]);
+            }
+            catch(Exception $e){
+                echo $e->getMessage();
+            }
+        }
+    }
+
 }
