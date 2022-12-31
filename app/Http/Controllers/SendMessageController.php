@@ -14,7 +14,7 @@ use Twilio\Rest\Client;
 class SendMessageController extends Controller
 {
     public function template() {
-        $sent = SendMessage::all();
+        $sent = SendMessage::paginate(15);
         return view("Dashboard.SendMessage.messages", [
             "sent" => $sent
         ]);

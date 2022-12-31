@@ -8,7 +8,7 @@
         <main class="w-full flex-grow p-6">
 
             <div class="create-button text-right">
-                <form action="{{ url("/import-customers") }}" method="POST" enctype="multipart/form-data">
+                <form action="{{ URL("/import-customers") }}" method="POST" enctype="multipart/form-data">
                     @csrf
                     <input type="file" name="excel_file" class="p-2 bg-gray-900 rounded text-white" />
                     <button type="submit" class="p-2 bg-gray-900 rounded text-white">Import</button>
