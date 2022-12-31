@@ -26,10 +26,14 @@
             <i class="fas fa-tablet-alt mr-3"></i>
             SEND BULK MESSAGE
         </a>
-    <!--     <a href="{{ url('/logout') }}" class="flex items-center text-white opacity-75 hover:opacity-100 py-4 pl-6 nav-item">
+        <a href="{{ route('all_campaigns') }}" class="flex items-center text-white opacity-75 hover:opacity-100 py-4 pl-6 nav-item">
+            <i class="fas fa-tablet-alt mr-3"></i>
+            Campaigns
+        </a>
+        <a href="{{ route("logout") }}" class="flex items-center text-white opacity-75 hover:opacity-100 py-4 pl-6 nav-item">
             <i class="fas fa-sign-out mr-3"></i>
             LOGOUT
-        </a> -->
+        </a>
     </nav>
 
 </aside>

@@ -17,6 +17,7 @@ return new class extends Migration
             $table->id();
             $table->timestamps();
             $table->string("customer_phone", 255);
+            $table->string("pay_out", 255)->nullable();
         });
     }
 

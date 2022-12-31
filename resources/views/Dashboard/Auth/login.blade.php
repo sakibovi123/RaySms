@@ -1,6 +1,7 @@
 @include("Dashboard.base")
 
 <div class="h-screen flex flex-col items-center justify-center mx-auto">
+
     <p class="text-green-700 text-xl mb-3 m-4">
         Welcome to TEXTRAY
     </p>
@@ -35,6 +36,8 @@
             Login
         </button>
     </form>
+
 </div>
+
 
 
