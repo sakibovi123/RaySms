@@ -18,4 +18,8 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
 
+// post request for getting caller Id from ringba
+Route::post("/post-number", [\App\Http\Controllers\NumberController::class, 'send_callerId_to_crm']);
+
+// generating automatic message
 Route::post("/auto-message", [\App\Http\Controllers\SendMessageController::class, "send_sms_automatically"]);
