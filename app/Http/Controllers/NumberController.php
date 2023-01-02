@@ -29,7 +29,7 @@ class NumberController extends Controller
                 //"+14356277657",
                 [
                     "from" => "+18882998227",
-                    "body" => $contents[0]
+                    "body" => $contents[1]
                 ]
             );
         }
