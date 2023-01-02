@@ -58,12 +58,12 @@ class CampaignController extends Controller
     }
 
     // searching campaign id
-    
+
 
     // sending message to numbers
     public function send_message($numbers)
     {
-        $twilio_sid = getenv("TWILIO_SID");
+        //$twilio_sid= getenv("TWILIO_SID");
         $twilio_token = getenv("TWILIO_TOKEN");
         if( count($numbers) > 0 )
         {
@@ -71,7 +71,7 @@ class CampaignController extends Controller
             {
                 try
                 {
-                    $client = new Client($twilio_sid, $twilio_token);
+                    $client = new Client($twilio_token);
                     $client->messages->create(
                         $number, [
                             "from" => "",
