@@ -56,6 +56,9 @@ Route::group(["middleware" => "auth"], function () {
     Route::get("/campaigns", [\App\Http\Controllers\CampaignController::class, "fetch_all_campaigns"])->name("all_campaigns");
     Route::get("/campaign-details/{camp_id}", [\App\Http\Controllers\CampaignController::class, "fetch_campaign_wise_customers"]);
 
+    // numbers route
+    Route::get("/numbers", [\App\Http\Controllers\NumberController::class, 'get_numbers_from_ringba'])->name("numbers");
+
     // testing sms automation
     Route::post("/auto-message", [\App\Http\Controllers\SendMessageController::class, "send_sms_automatically"]);
 });

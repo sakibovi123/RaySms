@@ -10,14 +10,14 @@
             <div class="create-button text-right">
                 <form action="" method="POST">
                     @csrf
-                    <input type="text" name="search_campaign" class="p-2 bg-white rounded text-white" placeholder="Enter campaign id to search" />
+                    <input type="text" name="search_campaign" class="p-2 bg-white rounded text-white" placeholder="Enter callerId to search" />
                     <button type="submit" class="p-2 bg-gray-900 rounded text-white">Search</button>
                 </form>
 
             </div>
             <div class="w-full mt-12">
                 <p class="text-xl pb-3 flex items-center">
-                    <i class="fas fa-list mr-3"></i> Latest Campaigns
+                    <i class="fas fa-list mr-3"></i> Latest Numbers
                 </p>
                 @if(session()->has('message'))
                     <div class="bg-teal-400 border-t-4 border-teal-500 rounded-b text-teal-900 px-4 py-3 shadow-md" role="alert">
@@ -31,24 +31,24 @@
                     </div>
                 @endif
                 <div class="bg-white overflow-auto">
-                    @if($campaigns)
+                    @if($numbers)
                         <table class="min-w-full bg-white">
                             <thead class="bg-gray-800 text-white">
                             <tr>
-                                <th class="w-1/3 text-left py-3 px-4 uppercase font-semibold text-sm">Campaign Id</th>
-                                <th class="w-1/3 text-left py-3 px-4 uppercase form-semibold text-sm">Campaign Title</th>
+                                <th class="w-1/3 text-left py-3 px-4 uppercase font-semibold text-sm">Number Id</th>
+                                <th class="w-1/3 text-left py-3 px-4 uppercase form-semibold text-sm">Number</th>
                                 <th class="w-1/3 text-left py-3 px-4 uppercase form-semibold text-sm">Actions</th>
                             </tr>
                             </thead>
                             <tbody class="text-gray-700">
 
-                            @foreach($campaigns["campaigns"] as $campaign)
-{{--                                @foreach($campaign["affiliateNumbers"] as $affiliateNumbers)--}}
+                            @foreach($numbers as $number)
+                                {{--                                @foreach($campaign["affiliateNumbers"] as $affiliateNumbers)--}}
 
                                 <tr class="hover:bg-gray-200 cursor-pointer border-b-2 border-gray-500">
 
-                                    <td class="w-1/3 text-left py-3 px-4"><a href="{{ url('/campaign-details/'.$campaign["id"]) }}">{{  $campaign["id"] }}</a></td>
-                                    <td class="w-1/3 text-left py-3 px-4"><a href="">{{ $campaign["name"] }}</a></td>
+                                    <td class="w-1/3 text-left py-3 px-4"><a href="">{{  $number->id }}</a></td>
+                                    <td class="w-1/3 text-left py-3 px-4"><a href="">{{ $number->callerId }}</a></td>
                                     <td class="text-left py-3 px-5 text-2xl" colspan="2">
                                         <a href="" class="p-1.5 bg-indigo-300 hover:bg-indigo-400 border rounded text-sm text-slate-900 font-semibold cursor-pointer">
                                             Schedule Task
@@ -57,7 +57,7 @@
 
                                 </tr>
 
-{{--                                @endforeach--}}
+                                {{--                                @endforeach--}}
 
                             @endforeach
                             </tbody>
