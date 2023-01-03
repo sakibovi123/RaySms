@@ -23,49 +23,53 @@ class NumberController extends Controller
         $twilio_token = getenv("TWILIO_TOKEN");
         $client = new Client($twilio_sid, $twilio_token);
         foreach ($numbers as $number) {
-            if( $number->content1 == 0 ){
+            if( $number->content1 == 0 && $number->content2 == 0 && $number->content3 == 0 && $number->content4 == 0 ){
                 $client->messages->create(
                     $number->callerId,
                     //"+14356277657",
                     [
-                        "from" => "+18882998227",
+                        "from" => "+13085299517",
                         "body" => $contents[0]
                     ]
                 );
                 $number->content1 = 1;
+                $number->save();
             }
-            else if( $number->content1 == 1 && $number == 0 ) {
+            else if( $number->content1 == 1 && $number->content2 == 0 && $number->content3 == 0 && $number->content4 == 0 ) {
                 $client->messages->create(
                     $number->callerId,
                     //"+14356277657",
                     [
-                        "from" => "+18882998227",
+                        "from" => "+13085299517",
                         "body" => $contents[1]
                     ]
                 );
-                $number->content2 = 2;
+                $number->content2 = 1;
+                $number->save();
             }
             else if( $number->content1 == 1 && $number->content2 == 1 && $number->content3 == 0 && $number->content4 == 0 ){
                 $client->messages->create(
                     $number->callerId,
                     //"+14356277657",
                     [
-                        "from" => "+18882998227",
+                        "from" => "+13085299517",
                         "body" => $contents[2]
                     ]
                 );
                 $number->content3 = 1;
+                $number->save();
             }
             else if(  $number->content1 == 1 && $number->content2 == 1 && $number->content3 == 1 && $number->content4 == 0 ){
                 $client->messages->create(
                     $number->callerId,
                     //"+14356277657",
                     [
-                        "from" => "+18882998227",
+                        "from" => "+13085299517",
                         "body" => $contents[3]
                     ]
                 );
                 $number->content4 = 1;
+                $number->save();
             }
 
         }
