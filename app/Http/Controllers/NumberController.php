@@ -98,9 +98,8 @@ class NumberController extends Controller
                 $number->save();
 
                 // queues for automatic message
-                SendInstantSMS::dispatch($number->callerId)
-                    ->delay(now()->addMinutes(01));
-                SendSMSAfter20Mins::dispatch($number->callerId)
+                SendInstantSMS::dispatch($number->callerId);
+                /*SendSMSAfter20Mins::dispatch($number->callerId)
                     ->delay(now()->addMinutes(20));
                 SendSMSAfter1Hour::dispatch($number->callerId)
                     ->delay(now()->addMinutes(20)->addHours(1));
@@ -109,7 +108,7 @@ class NumberController extends Controller
                 SendSMSAfter24Hours::dispatch($number->callerId)
                     ->delay((now()->addHours(23)));
                 SendSMSAfter26Hours::dispatch($number->callerId)
-                    ->delay(now()->addHours(2));
+                    ->delay(now()->addHours(2));*/
 
                 return response()->json([
                     "status" => "success"
