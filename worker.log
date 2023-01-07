@@ -99061,3 +99061,119 @@
   The "--sleep" option does not exist.  
                                         
 
+  2023-01-07 16:50:10 App\Jobs\SendInstantSMS ........................ RUNNING
+  2023-01-07 16:50:10 App\Jobs\SendInstantSMS .................. 379.56ms DONE
+  2023-01-07 16:50:10 App\Jobs\SendInstantSMS ........................ RUNNING
+  2023-01-07 16:50:11 App\Jobs\SendInstantSMS .................. 333.61ms DONE
+  2023-01-07 16:50:11 App\Jobs\SendInstantSMS ........................ RUNNING
+  2023-01-07 16:50:11 App\Jobs\SendInstantSMS .................. 338.22ms DONE
+  2023-01-07 16:50:11 App\Jobs\SendSMSAfter20Mins .................... RUNNING
+  2023-01-07 16:50:11 App\Jobs\SendSMSAfter20Mins .............. 312.43ms DONE
+  2023-01-07 16:50:11 App\Jobs\SendSMSAfter1Hour ..................... RUNNING
+  2023-01-07 16:50:12 App\Jobs\SendSMSAfter1Hour ............... 321.66ms DONE
+  2023-01-07 16:50:12 App\Jobs\SendSMSAfter2Hours .................... RUNNING
+  2023-01-07 16:50:12 App\Jobs\SendSMSAfter2Hours .............. 316.52ms DONE
+  2023-01-07 16:50:12 App\Jobs\SendSMSAfter26Hours ................... RUNNING
+  2023-01-07 16:50:12 App\Jobs\SendSMSAfter26Hours ............. 295.07ms DONE
+  2023-01-07 16:50:12 App\Jobs\SendInstantSMS ........................ RUNNING
+  2023-01-07 16:50:12 App\Jobs\SendInstantSMS .................. 296.70ms DONE
+  2023-01-07 16:50:12 App\Jobs\SendSMSAfter20Mins .................... RUNNING
+  2023-01-07 16:50:13 App\Jobs\SendSMSAfter20Mins .............. 312.77ms DONE
+  2023-01-07 16:50:13 App\Jobs\SendSMSAfter1Hour ..................... RUNNING
+  2023-01-07 16:50:13 App\Jobs\SendSMSAfter1Hour ............... 309.40ms DONE
+  2023-01-07 16:50:13 App\Jobs\SendSMSAfter2Hours .................... RUNNING
+  2023-01-07 16:50:13 App\Jobs\SendSMSAfter2Hours .............. 304.19ms DONE
+  2023-01-07 16:50:13 App\Jobs\SendSMSAfter26Hours ................... RUNNING
+  2023-01-07 16:50:14 App\Jobs\SendSMSAfter26Hours ............. 369.98ms DONE
+  2023-01-07 16:50:14 App\Jobs\SendInstantSMS ........................ RUNNING
+  2023-01-07 16:50:14 App\Jobs\SendInstantSMS .................. 381.10ms DONE
+  2023-01-07 16:50:14 App\Jobs\SendSMSAfter20Mins .................... RUNNING
+  2023-01-07 16:50:14 App\Jobs\SendSMSAfter20Mins .............. 303.53ms DONE
+  2023-01-07 16:50:14 App\Jobs\SendSMSAfter1Hour ..................... RUNNING
+  2023-01-07 16:50:15 App\Jobs\SendSMSAfter1Hour ............... 305.86ms DONE
+  2023-01-07 16:50:15 App\Jobs\SendSMSAfter2Hours .................... RUNNING
+  2023-01-07 16:50:15 App\Jobs\SendSMSAfter2Hours .............. 297.63ms DONE
+  2023-01-07 16:50:15 App\Jobs\SendSMSAfter26Hours ................... RUNNING
+  2023-01-07 16:50:15 App\Jobs\SendSMSAfter26Hours ............. 299.08ms DONE
+  2023-01-07 16:50:15 App\Jobs\SendInstantSMS ........................ RUNNING
+  2023-01-07 16:50:16 App\Jobs\SendInstantSMS .................. 310.64ms DONE
+  2023-01-07 16:50:16 App\Jobs\SendSMSAfter20Mins .................... RUNNING
+  2023-01-07 16:50:16 App\Jobs\SendSMSAfter20Mins .............. 309.85ms DONE
+  2023-01-07 16:50:16 App\Jobs\SendSMSAfter1Hour ..................... RUNNING
+  2023-01-07 16:50:16 App\Jobs\SendSMSAfter1Hour ............... 356.62ms DONE
+  2023-01-07 16:50:16 App\Jobs\SendSMSAfter2Hours .................... RUNNING
+  2023-01-07 16:50:17 App\Jobs\SendSMSAfter2Hours .............. 306.54ms DONE
+  2023-01-07 16:50:17 App\Jobs\SendSMSAfter26Hours ................... RUNNING
+  2023-01-07 16:50:17 App\Jobs\SendSMSAfter26Hours ............. 283.09ms DONE
+  2023-01-07 16:50:17 App\Jobs\SendInstantSMS ........................ RUNNING
+  2023-01-07 16:50:17 App\Jobs\SendInstantSMS .................. 293.28ms DONE
+  2023-01-07 16:50:17 App\Jobs\SendSMSAfter20Mins .................... RUNNING
+  2023-01-07 16:50:18 App\Jobs\SendSMSAfter20Mins .............. 339.42ms DONE
+  2023-01-07 16:50:18 App\Jobs\SendSMSAfter1Hour ..................... RUNNING
+  2023-01-07 16:50:18 App\Jobs\SendSMSAfter1Hour ............... 293.42ms DONE
+  2023-01-07 16:50:18 App\Jobs\SendSMSAfter2Hours .................... RUNNING
+  2023-01-07 16:50:18 App\Jobs\SendSMSAfter2Hours .............. 318.73ms DONE
+  2023-01-07 16:50:18 App\Jobs\SendSMSAfter26Hours ................... RUNNING
+  2023-01-07 16:50:19 App\Jobs\SendSMSAfter26Hours ............. 330.12ms DONE
+  2023-01-07 16:50:19 App\Jobs\SendInstantSMS ........................ RUNNING
+  2023-01-07 16:50:19 App\Jobs\SendInstantSMS .................. 331.05ms DONE
+  2023-01-07 16:50:19 App\Jobs\SendSMSAfter20Mins .................... RUNNING
+  2023-01-07 16:50:19 App\Jobs\SendSMSAfter20Mins .............. 289.40ms DONE
+  2023-01-07 16:50:19 App\Jobs\SendSMSAfter1Hour ..................... RUNNING
+  2023-01-07 16:50:19 App\Jobs\SendSMSAfter1Hour ............... 324.26ms DONE
+  2023-01-07 16:50:19 App\Jobs\SendSMSAfter2Hours .................... RUNNING
+  2023-01-07 16:50:20 App\Jobs\SendSMSAfter2Hours .............. 292.20ms DONE
+  2023-01-07 16:50:20 App\Jobs\SendSMSAfter26Hours ................... RUNNING
+  2023-01-07 16:50:20 App\Jobs\SendSMSAfter26Hours ............. 299.27ms DONE
+  2023-01-07 16:50:20 App\Jobs\SendInstantSMS ........................ RUNNING
+  2023-01-07 16:50:20 App\Jobs\SendInstantSMS .................. 329.17ms DONE
+  2023-01-07 16:50:20 App\Jobs\SendSMSAfter20Mins .................... RUNNING
+  2023-01-07 16:50:21 App\Jobs\SendSMSAfter20Mins .............. 318.39ms DONE
+  2023-01-07 16:50:21 App\Jobs\SendSMSAfter1Hour ..................... RUNNING
+  2023-01-07 16:50:21 App\Jobs\SendSMSAfter1Hour ............... 291.67ms DONE
+  2023-01-07 16:50:21 App\Jobs\SendSMSAfter2Hours .................... RUNNING
+  2023-01-07 16:50:21 App\Jobs\SendSMSAfter2Hours .............. 345.83ms DONE
+  2023-01-07 16:50:21 App\Jobs\SendInstantSMS ........................ RUNNING
+  2023-01-07 16:50:22 App\Jobs\SendInstantSMS .................. 339.43ms DONE
+  2023-01-07 16:50:22 App\Jobs\SendSMSAfter20Mins .................... RUNNING
+  2023-01-07 16:50:22 App\Jobs\SendSMSAfter20Mins .............. 350.84ms DONE
+  2023-01-07 16:50:22 App\Jobs\SendSMSAfter1Hour ..................... RUNNING
+  2023-01-07 16:50:22 App\Jobs\SendSMSAfter1Hour ............... 333.50ms DONE
+  2023-01-07 16:50:22 App\Jobs\SendSMSAfter2Hours .................... RUNNING
+  2023-01-07 16:50:23 App\Jobs\SendSMSAfter2Hours .............. 332.54ms DONE
+  2023-01-07 16:50:23 App\Jobs\SendInstantSMS ........................ RUNNING
+  2023-01-07 16:50:23 App\Jobs\SendInstantSMS .................. 301.10ms DONE
+  2023-01-07 16:50:23 App\Jobs\SendSMSAfter20Mins .................... RUNNING
+  2023-01-07 16:50:23 App\Jobs\SendSMSAfter20Mins .............. 285.50ms DONE
+  2023-01-07 16:50:23 App\Jobs\SendSMSAfter1Hour ..................... RUNNING
+  2023-01-07 16:50:24 App\Jobs\SendSMSAfter1Hour ............... 307.11ms DONE
+  2023-01-07 16:50:24 App\Jobs\SendSMSAfter2Hours .................... RUNNING
+  2023-01-07 16:50:24 App\Jobs\SendSMSAfter2Hours .............. 386.36ms DONE
+  2023-01-07 16:50:24 App\Jobs\SendInstantSMS ........................ RUNNING
+  2023-01-07 16:50:24 App\Jobs\SendInstantSMS .................. 300.63ms DONE
+  2023-01-07 16:50:24 App\Jobs\SendSMSAfter20Mins .................... RUNNING
+  2023-01-07 16:50:25 App\Jobs\SendSMSAfter20Mins .............. 314.16ms DONE
+  2023-01-07 16:50:25 App\Jobs\SendSMSAfter1Hour ..................... RUNNING
+  2023-01-07 16:50:25 App\Jobs\SendSMSAfter1Hour ............... 339.80ms DONE
+  2023-01-07 16:50:25 App\Jobs\SendSMSAfter2Hours .................... RUNNING
+  2023-01-07 16:50:25 App\Jobs\SendSMSAfter2Hours .............. 325.84ms DONE
+  2023-01-07 16:50:25 App\Jobs\SendInstantSMS ........................ RUNNING
+  2023-01-07 16:50:26 App\Jobs\SendInstantSMS .................. 295.95ms DONE
+  2023-01-07 16:50:26 App\Jobs\SendSMSAfter20Mins .................... RUNNING
+  2023-01-07 16:50:26 App\Jobs\SendSMSAfter20Mins .............. 300.64ms DONE
+  2023-01-07 16:50:26 App\Jobs\SendInstantSMS ........................ RUNNING
+  2023-01-07 16:50:26 App\Jobs\SendInstantSMS .................. 289.76ms DONE
+  2023-01-07 16:50:26 App\Jobs\SendInstantSMS ........................ RUNNING
+  2023-01-07 16:50:27 App\Jobs\SendInstantSMS .................. 312.48ms DONE
+  2023-01-07 16:50:36 App\Jobs\SendSMSAfter20Mins .................... RUNNING
+  2023-01-07 16:50:36 App\Jobs\SendSMSAfter20Mins .............. 317.37ms DONE
+  2023-01-07 16:53:39 App\Jobs\SendSMSAfter26Hours ................... RUNNING
+  2023-01-07 16:53:39 App\Jobs\SendSMSAfter26Hours ............. 423.16ms DONE
+  2023-01-07 16:55:31 App\Jobs\SendSMSAfter20Mins .................... RUNNING
+  2023-01-07 16:55:31 App\Jobs\SendSMSAfter20Mins .............. 387.66ms DONE
+  2023-01-07 16:56:46 App\Jobs\SendInstantSMS ........................ RUNNING
+  2023-01-07 16:56:47 App\Jobs\SendInstantSMS .................. 832.78ms DONE
+  2023-01-07 16:57:59 App\Jobs\SendSMSAfter26Hours ................... RUNNING
+  2023-01-07 16:57:59 App\Jobs\SendSMSAfter26Hours ............. 345.76ms DONE
+  2023-01-07 16:59:41 App\Jobs\SendSMSAfter2Hours .................... RUNNING
+  2023-01-07 16:59:42 App\Jobs\SendSMSAfter2Hours .............. 437.22ms DONE
