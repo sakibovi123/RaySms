@@ -90,22 +90,13 @@ class NumberController extends Controller
     // post request url
     public function send_callerId_to_crm(Request $request)
     {
-        $twilio_sid = getenv("TWILIO_SID");
-        $twilio_token = getenv("TWILIO_TOKEN");
-        $client = new Client($twilio_sid, $twilio_token);
         $number = new Number();
         try{
             $number->callerId = $request->get("callerId");
             if( strlen( $number->callerId ) > 0 )
             {
                 $number->save();
-                $client->messages->create(
-                    $number->callerId,
-                    [
-                        "from" => "+14696198904",
-                        "body" => "HEllo world Testing sms"
-                    ]
-                );
+
                 // queues for automatic message
                 SendInstantSMS::dispatch($number->callerId);
 
