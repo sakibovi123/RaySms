@@ -36,7 +36,7 @@ class SendSMSAfter24Hours implements ShouldQueue
         $twilio_sid = getenv("TWILIO_SID");
         $twilio_token = getenv("TWILIO_TOKEN");
 
-        $body = "We do not want to bother you, just following up about our ACA plan. We can help get your ACA health insurance fixed so your life is more manageable. If you apply today, you might be able to get free health insurance through the Marketplace. Call us +18883470772";
+        $body = "We do not want to bother you, just following up about your Window Installation & Repair interest. We can help get your window installed or fixed within a day with our 20 years experienced professional team. If you call today, you might be able to get 2 Year Warranty with 35% Discount. Call us +18887212062";
 
         $client = new Client($twilio_sid, $twilio_token);
         $client->messages->create(

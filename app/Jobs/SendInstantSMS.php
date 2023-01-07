@@ -36,7 +36,7 @@ class SendInstantSMS implements ShouldQueue
         $twilio_sid = getenv("TWILIO_SID");
         $twilio_token = getenv("TWILIO_TOKEN");
 
-        $body = "We apologize that your call was dropped. We have qualified you for a simple, low-cost health insurance plan. Contact us at +18883470772 again within 1 minute to find out more about your free, no-risk health insurance plan!";
+        $body = "We apologize that your call was dropped. We have qualified you for an Energy-efficient, low-cost Window Installation & Repair Free Quote. Contact us at +18887212062 again within 1 minute to find out more about your 2023 Special New Year Discounts!";
 
         $client = new Client($twilio_sid, $twilio_token);
         $client->messages->create(

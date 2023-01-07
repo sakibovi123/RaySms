@@ -36,7 +36,7 @@ class SendSMSAfter26Hours implements ShouldQueue
         $twilio_sid = getenv("TWILIO_SID");
         $twilio_token = getenv("TWILIO_TOKEN");
 
-        $body = "Hey there! It’s our final follow-up from our end. Do you still wish to proceed? We are always here to assist you. Call us +18883470772 without any hesitation.";
+        $body = "Hey there! It’s our final follow-up from our end. Are you dissatisfied with the appearance of your house? Is your window plain and boring, out-of-date or deteriorating? Think twice before Winter. We are always here to assist you. Call us +18887212062 without any hesitation.";
 
         $client = new Client($twilio_sid, $twilio_token);
         $client->messages->create(

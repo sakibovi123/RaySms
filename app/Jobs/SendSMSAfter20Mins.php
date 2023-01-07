@@ -36,7 +36,7 @@ class SendSMSAfter20Mins implements ShouldQueue
         $twilio_sid = getenv("TWILIO_SID");
         $twilio_token = getenv("TWILIO_TOKEN");
 
-        $sms = "Still not Happy with our 20% discount? We have reserved a special enrollment opportunity just for you and your family (all-inclusive medical protection & 25% Discount)! Reduce your chances of becoming ill or injured with ACA, as 14.5 million US citizens have done. Call Now: +18883470772 before the offer expires Today!";
+        $sms = "Hi, Congratulations! As an apology for the dropped call, We are currently offering you a limited time 20% discount on the Window Installation & Repair Service, just for you! Please reach us again at +18887212062. Think twice before ignoring our exclusive offer, Winter is Coming!";
 
         $client = new Client($twilio_sid, $twilio_token);
         $client->messages->create(

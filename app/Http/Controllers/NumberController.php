@@ -19,68 +19,6 @@ class NumberController extends Controller
     public function get_numbers_from_ringba()
     {
         $numbers = Number::all();
-//        $contents = array(
-//            "Still not Happy with our 20% discount? We have reserved a special enrollment opportunity just for you and your family (all-inclusive medical protection & 25% Discount)! Reduce your chances of becoming ill or injured with ACA, as 14.5 million US citizens have done. Call Now: +18883470772 before the offer expires Today!",
-//            "We do not want to bother you, just following up about our ACA plan. We can help get your ACA health insurance fixed so your life is more manageable. If you apply today, you might be able to get free health insurance through the Marketplace. Call us +18883470772",
-//            "Hey there! It’s our final follow-up from our end. Do you still wish to proceed? We are always here to assist you. Call us +18883470772 without any hesitation."
-//            "We think you haven't noticed our previous offer yet. Don't worry, the offer is still available. There are more opportunities this time for you and your family to receive a 30% discount on ACA health insurance. Call Now: +18883470772 and secure your discounted ACA plan today! ",
-//        );
-//        $twilio_sid = getenv("TWILIO_SID");
-//        $twilio_token = getenv("TWILIO_TOKEN");
-//        $client = new Client($twilio_sid, $twilio_token);
-//        foreach ($numbers as $number) {
-//            if( $number->content1 == 0 && $number->content2 == 0 && $number->content3 == 0 && $number->content4 == 0 ){
-//                $client->messages->create(
-//                    $number->callerId,
-//                    //"+14356277657",
-//                    [
-//                        "from" => "+13085299517",
-//                        "body" => $contents[0]
-//                    ]
-//                );
-//                $number->content1 = 1;
-//                $number->save();
-//            }
-//            else if( $number->content1 == 1 && $number->content2 == 0 && $number->content3 == 0 && $number->content4 == 0 ) {
-//                $client->messages->create(
-//                    $number->callerId,
-//                    //"+14356277657",
-//                    [
-//                        "from" => "+13085299517",
-//                        "body" => $contents[1]
-//                    ]
-//                );
-//                $number->content2 = 1;
-//                $number->save();
-//            }
-//            else if( $number->content1 == 1 && $number->content2 == 1 && $number->content3 == 0 && $number->content4 == 0 ){
-//                $client->messages->create(
-//                    $number->callerId,
-//                    //"+14356277657",
-//                    [
-//                        "from" => "+13085299517",
-//                        "body" => $contents[2]
-//                    ]
-//                );
-//                $number->content3 = 1;
-//                $number->save();
-//            }
-//            else if(  $number->content1 == 1 && $number->content2 == 1 && $number->content3 == 1 && $number->content4 == 0 ){
-//                $client->messages->create(
-//                    $number->callerId,
-//                    //"+14356277657",
-//                    [
-//                        "from" => "+13085299517",
-//                        "body" => $contents[3]
-//                    ]
-//                );
-//                $number->content4 = 1;
-//                $number->save();
-//            }
-//
-//        }
-
-
         return view("Dashboard.Numbers.numbers", [
             "numbers" => $numbers
         ]);
