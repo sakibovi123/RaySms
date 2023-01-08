@@ -13,11 +13,11 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('campaigns', function (Blueprint $table) {
+        Schema::create('contents', function (Blueprint $table) {
             $table->id();
             $table->timestamps();
-            $table->string("campaign_id", 255);
-            $table->boolean("is_active")->default(0);
+            $table->string("body", 1000);
+            $table->foreignIdFor(\App\Models\campaign::class);
         });
     }
 
@@ -28,6 +28,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('campaigns');
+        Schema::dropIfExists('contents');
     }
 };

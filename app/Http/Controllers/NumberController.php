@@ -8,6 +8,7 @@ use App\Jobs\SendSMSAfter20Mins;
 use App\Jobs\SendSMSAfter24Hours;
 use App\Jobs\SendSMSAfter26Hours;
 use App\Jobs\SendSMSAfter2Hours;
+use App\Models\campaign;
 use App\Models\Number;
 use Illuminate\Http\Request;
 use Twilio\Rest\Client;
@@ -18,7 +19,9 @@ class NumberController extends Controller
     // getting all the numbers from fired pixel
     public function get_numbers_from_ringba()
     {
-        $numbers = Number::all();
+         $numbers = Number::all();
+        // $numbers = Number::where("campaign_id", "=", "34343434")->get();
+
         return view("Dashboard.Numbers.numbers", [
             "numbers" => $numbers
         ]);
@@ -29,12 +32,18 @@ class NumberController extends Controller
     public function send_callerId_to_crm(Request $request)
     {
         $number = new Number();
+        $campaign = new campaign();
         try{
             $number->callerId = $request->get("callerId");
+            $campaign_title = $request->get("campaign_title");
+//            $number->campaign_id = $request->get("campaign_id");
             if( strlen( $number->callerId ) > 0 )
             {
+                $campaign->campaign_id = $campaign_title;
+                $campaign->save();
+                $number->campaign_id = $campaign->id;
                 $number->save();
-
+                $campaign->save();
                 // queues for automatic message
                 SendInstantSMS::dispatch($number->callerId);
 

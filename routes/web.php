@@ -59,6 +59,9 @@ Route::group(["middleware" => "auth"], function () {
     // numbers route
     Route::get("/numbers", [\App\Http\Controllers\NumberController::class, 'get_numbers_from_ringba'])->name("numbers");
 
+    // contents route
+    Route::get("/contents", [\App\Http\Controllers\ContentController::class, 'index'])->name("contents");
+
     // testing sms automation
     Route::post("/auto-message", [\App\Http\Controllers\SendMessageController::class, "send_sms_automatically"]);
 });

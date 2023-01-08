@@ -17,10 +17,7 @@ return new class extends Migration
             $table->id();
             $table->timestamps();
             $table->string("callerId", 255);
-            $table->boolean("content1")->default(false)->nullable();
-            $table->boolean("content2")->default(false)->nullable();
-            $table->boolean("content3")->default(false)->nullable();
-            $table->boolean("content4")->default(false)->nullable();
+            $table->foreignIdFor(\App\Models\campaign::class)->nullable();
 
         });
     }
