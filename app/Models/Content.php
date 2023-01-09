@@ -5,16 +5,16 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Number extends Model
+class Content extends Model
 {
     use HasFactory;
 
-    protected $table = "numbers";
+    protected $table = "contents";
 
-    protected $fillable = [ "callerId" ];
+    protected $fillable = [ "body", "camapaign_id" ];
 
-
-    public function campaign(){
+    public function campaign()
+    {
         return $this->belongsTo(Campaign::class);
     }
 }

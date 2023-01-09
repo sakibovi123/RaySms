@@ -16,6 +16,8 @@ return new class extends Migration
         Schema::create('campaigns', function (Blueprint $table) {
             $table->id();
             $table->timestamps();
+            $table->string("ringba_campaign_id", 255);
+            $table->boolean("is_active")->default(0);
         });
     }
 

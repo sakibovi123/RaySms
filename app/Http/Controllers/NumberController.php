@@ -8,6 +8,7 @@ use App\Jobs\SendSMSAfter20Mins;
 use App\Jobs\SendSMSAfter24Hours;
 use App\Jobs\SendSMSAfter26Hours;
 use App\Jobs\SendSMSAfter2Hours;
+use App\Models\Campaign;
 use App\Models\Number;
 use Illuminate\Http\Request;
 use Twilio\Rest\Client;
@@ -31,10 +32,16 @@ class NumberController extends Controller
         $number = new Number();
         try{
             $number->callerId = $request->get("callerId");
+            $campaignId = $request->get("ringba_campaign_id");
             if( strlen( $number->callerId ) > 0 )
             {
-                $number->save();
+                Campaign::create(
+                    [
+                        "ringba_campaign_id" => $campaignId
+                    ]
+                );
 
+                $number->save();
                 // queues for automatic message
                 SendInstantSMS::dispatch($number->callerId);
 
