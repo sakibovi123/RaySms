@@ -53,7 +53,12 @@
 
                                     <td class="w-1/3 text-left py-3 px-4"><a href="{{ url('/edit-content/'.$content->id) }}">{{  $content->created_at }}</a></td>
                                     <td class="w-1/3 text-left py-3 px-4"><a href="">{{ $content->body }}</a></td>
-                                    <td class="w-1/3 text-left py-3 px-4"><a href="">{{ $content->campaign->ringba_campaign_id }}</a></td>
+                                    @if (empty($content->campaign))
+                                        <td class="w-1/3 text-left py-3 px-4"><a href="">No Campaign Added</a></td>
+                                        @else
+                                        <td class="w-1/3 text-left py-3 px-4"><a href="">{{ $content->campaign->ringba_campaign_id }}</a></td>
+                                    @endif
+                                    
                                 </tr>
                             @endforeach
                             </tbody>
