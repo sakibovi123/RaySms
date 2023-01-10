@@ -63,11 +63,13 @@
                                         <form method="POST" action="{{ url('/change-status/'.$campaign->id) }}">
                                             @csrf
                                             @method("PUT")
-                                            <input type="hidden" value="{{ $campaign->id }}">
+                                            {{-- <input type="hidden" value="{{ $campaign->id }}"> --}}
                                             @if ($campaign->is_active == 0)
+                                                <input type="hidden" name="start" value="start">
                                                 <button type="submit" class="p-1 bg-gray-900 text-white rounded">Run</button>
                                                 @else
-                                                <button type="submit">Stop</button>
+                                                <input type="hidden" name="stop" value="stop">
+                                                <button type="submit" class="p-1 bg-red-900 text-white rounded">Stop</button>
                                             @endif
                                             
                                         </form>
