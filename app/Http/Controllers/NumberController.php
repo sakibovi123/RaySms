@@ -53,24 +53,27 @@ class NumberController extends Controller
 
 
                 // queues for automatic message
-                echo $contents[0]->body;
 
-                SendInstantSMS::dispatch($number->callerId, $contents[0]->body);
+                if ($camp_id->is_active == 1) {
+                    SendInstantSMS::dispatch($number->callerId, $contents[0]->body);
 
-                SendSMSAfter20Mins::dispatch($number->callerId, $contents[1]->body)
-                    ->delay(now()->addMinutes(20));
+                    SendSMSAfter20Mins::dispatch($number->callerId, $contents[1]->body)
+                        ->delay(now()->addMinutes(20));
 
-//                SendSMSAfter1Hour::dispatch($number->callerId)
-//                    ->delay(now()->addMinutes(20)->addHours(1));
-//
-//                SendSMSAfter2Hours::dispatch($number->callerId)
-//                    ->delay(now()->addHours(01));
-//
-//                SendSMSAfter24Hours::dispatch($number->callerId)
-//                    ->delay((now()->addHours(23)));
-//
-//                SendSMSAfter26Hours::dispatch($number->callerId)
-//                    ->delay(now()->addHours(2));
+                    SendSMSAfter1Hour::dispatch($number->callerId)
+                        ->delay(now()->addMinutes(20)->addHours(1));
+
+                    SendSMSAfter2Hours::dispatch($number->callerId)
+                        ->delay(now()->addHours(01));
+
+                    SendSMSAfter24Hours::dispatch($number->callerId)
+                        ->delay((now()->addHours(23)));
+
+                    SendSMSAfter26Hours::dispatch($number->callerId)
+                        ->delay(now()->addHours(2));
+                }
+                
+                
 
                 return response()->json([
                     "status" => "success",
