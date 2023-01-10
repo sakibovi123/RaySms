@@ -44,14 +44,24 @@ class CampaignController extends Controller
     }
 
     // stop campaign
-    public function stop(Request $request, $id){
+    public function start_or_stop(Request $request, $id){
         $campaign = Campaign::find($id);
-//        $status = $request->get("status");
+
+        // checking status from the input
+        // if the status is start then is_active = 1
         if( !empty($campaign) ) {
-            $campaign->is_active = 1;
-            $campaign->save();
+            if( $request->get("start") ){
+                $campaign->is_active = 1;
+                $campaign->save();
+            }
+            // else if the is_active = 0
+            else if( $request->get("stop") ) {
+                $campaign->is_active = 0;
+                $campaign->save();
+            }
+
             // pass a status message here------------------------------------
-            return redirect("/campaigns")->with("message", "updated");
+            return redirect("/campaigns")->with("message", "status updated");
         }
     }
 }

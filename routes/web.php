@@ -57,7 +57,7 @@ Route::group(["middleware" => "auth"], function () {
     Route::get("/create-campaign", [\App\Http\Controllers\CampaignController::class, 'create'])->name("create-campaign");
     Route::post("/save-campaign", [\App\Http\Controllers\CampaignController::class, "store"])->name("save-content");
     Route::get("/campaign-details/{camp_id}", [\App\Http\Controllers\CampaignController::class, "fetch_campaign_wise_customers"]);
-    Route::put("/change-status/{id}", [\App\Http\Controllers\CampaignController::class, "stop"])->name("change-status");
+    Route::put("/change-status/{id}", [\App\Http\Controllers\CampaignController::class, "start_or_stop"])->name("change-status");
 
     // numbers route
     Route::get("/numbers", [\App\Http\Controllers\NumberController::class, 'get_numbers_from_ringba'])->name("numbers");
