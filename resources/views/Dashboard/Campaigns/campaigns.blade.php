@@ -44,6 +44,7 @@
                             <thead class="bg-gray-800 text-white">
                             <tr>
                                 <th class="w-1/3 text-left py-3 px-4 uppercase font-semibold text-sm">Campaign Id</th>
+                                <th class="w-1/3 text-left py-3 px-4 uppercase font-semibold text-sm">Campaign Title</th>
                                 <th class="w-1/3 text-left py-3 px-4 uppercase form-semibold text-sm">Ringba Campaign Id</th>
                                 <th class="w-1/3 text-left py-3 px-4 uppercase form-semibold text-sm">Actions</th>
                             </tr>
@@ -56,6 +57,7 @@
                                 <tr class="hover:bg-gray-200 cursor-pointer border-b-2 border-gray-500">
 
                                     <td class="w-1/3 text-left py-3 px-4"><a href="{{ url('/campaign-details/'.$campaign->id) }}">{{  $campaign->created_at }}</a></td>
+                                    <td class="w-1/3 text-left py-3 px-4"><a href="">{{ $campaign->campaign_title }}</a></td>
                                     <td class="w-1/3 text-left py-3 px-4"><a href="">{{ $campaign->ringba_campaign_id }}</a></td>
                                     <td class="text-left py-3 px-5" colspan="2">
                                         <form method="POST" action="{{ url('/change-status/'.$campaign->id) }}">

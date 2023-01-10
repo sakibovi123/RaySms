@@ -28,10 +28,12 @@ class CampaignController extends Controller
     // storing campaigns into database
     public function store(Request $request){
         $campaign = new Campaign();
+        $campaign_title = $request->get("campaign_title");
         $ringba_campaign_id = $request->get("ringba_campaign_id");
 
-        if( !empty($ringba_campaign_id) ){
+        if( !empty($ringba_campaign_id) && !empty($campaign_title) ){
             $campaign->ringba_campaign_id = $ringba_campaign_id;
+            $campaign->campaign_title = $campaign_title;
             $campaign->save();
 
             return back()->with("message", "campaigns added");

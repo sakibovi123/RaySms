@@ -47,8 +47,10 @@ class ContentController extends Controller
     // edit function
     public function edit($id){
         $content = Content::find($id);
-        return view("Dashaboard.Contents.edit_content", [
-            "content" => $content
+        $campaigns = Campaign::all();
+        return view("Dashboard.Contents.edit_content", [
+            "content" => $content,
+            "campaigns" => $campaigns
         ]);
     }
 
