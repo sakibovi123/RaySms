@@ -15,15 +15,17 @@ class SendSMSAfter24Hours implements ShouldQueue
     use Dispatchable, InteractsWithQueue, Queueable, SerializesModels;
 
     private $number;
+    private $content;
 
     /**
      * Create a new job instance.
      *
      * @return void
      */
-    public function __construct(string $number)
+    public function __construct(string $number, string $content)
     {
         $this->number = $number;
+        $this->content = $content;
     }
 
     /**
@@ -43,7 +45,7 @@ class SendSMSAfter24Hours implements ShouldQueue
             $this->number,
             [
                 "from" => "+14696198904",
-                "body" => $body
+                "body" => $this->content
             ]
         );
     }
