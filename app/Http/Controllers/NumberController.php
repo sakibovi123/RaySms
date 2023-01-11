@@ -31,29 +31,31 @@ class NumberController extends Controller
     public function send_callerId_to_crm(Request $request)
     {
         $number = new Number();
-        $campaign = new Campaign();
         try{
             $number->callerId = $request->get("callerId");
             $campaignId = $request->get("ringba_campaign_id");
             if( strlen( $number->callerId ) > 0 )
             {
                 if( Campaign::where("ringba_campaign_id", "=", $campaignId)->count() > 0 ){
-                    $camp_id = Campaign::where("ringba_campaign_id", $campaignId)->first();
-                    $number->campaign_id = $camp_id->id;
+                    $campaign = Campaign::where("ringba_campaign_id", $campaignId)->first();
+                    $number->campaign_id = $campaign->id;
                     $number->save();
                 }
                 else{
+                    $campaign = new Campaign();
                     $campaign->ringba_campaign_id = $campaignId;
                     $campaign->save();
                     $number->campaign_id = $campaign->id;
                     $number->save();
                 }
 
-                $contents = Content::where("campaign_id", $camp_id->id)->get();
+                $contents = Content::where("campaign_id", $campaign->id)->get();
+                // echo $contents;
 
 
-                // queues for automatic message
-                if( $camp_id->is_active == 1 ) {
+                // // queues for automatic message
+                if( $campaign->is_active == 1 ){
+
                     SendInstantSMS::dispatch($number->callerId, $contents[0]->body);
 
                     SendSMSAfter20Mins::dispatch($number->callerId, $contents[1]->body)
