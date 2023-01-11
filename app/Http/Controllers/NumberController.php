@@ -53,7 +53,7 @@ class NumberController extends Controller
 
 
                 // queues for automatic message
-                if( $camp_id->is_active == 1 ){
+                if( $camp_id->is_active == 1 ) {
                     SendInstantSMS::dispatch($number->callerId, $contents[0]->body);
 
                     SendSMSAfter20Mins::dispatch($number->callerId, $contents[1]->body)
