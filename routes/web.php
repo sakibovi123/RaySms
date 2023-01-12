@@ -66,8 +66,8 @@ Route::group(["middleware" => "auth"], function () {
     Route::get("/contents", [\App\Http\Controllers\ContentController::class, "index"])->name("contents");
     Route::get("/create-content", [\App\Http\Controllers\ContentController::class, 'create'])->name("create-content");
     Route::post("/save-content", [\App\Http\Controllers\ContentController::class, "store"])->name("save-content");
-    Route::get("/edit-content/{id}/", [\App\Http\Controllers\ContentController::class, 'edit'])->name("edit-content");
-    Route::put("/update-content/{id}/", [\App\Http\Controllers\ContentController::class, 'update'])->name("update-content");
+    Route::get("/edit-content/{id}", [\App\Http\Controllers\ContentController::class, 'edit'])->name("edit-content");
+    Route::put("/update-content/{id}", [\App\Http\Controllers\ContentController::class, 'update'])->name("update-content");
     Route::delete("delete-content/{id}/", [\App\Http\Controllers\ContentController::class, "remove"])->name("remove-content");
 
     // testing sms automation

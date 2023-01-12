@@ -31,46 +31,49 @@ class NumberController extends Controller
     public function send_callerId_to_crm(Request $request)
     {
         $number = new Number();
-        $campaign = new Campaign();
         try{
             $number->callerId = $request->get("callerId");
             $campaignId = $request->get("ringba_campaign_id");
             if( strlen( $number->callerId ) > 0 )
             {
                 if( Campaign::where("ringba_campaign_id", "=", $campaignId)->count() > 0 ){
-                    $camp_id = Campaign::where("ringba_campaign_id", $campaignId)->first();
-                    $number->campaign_id = $camp_id->id;
+                    $campaign = Campaign::where("ringba_campaign_id", $campaignId)->first();
+                    $number->campaign_id = $campaign->id;
                     $number->save();
                 }
                 else{
+                    $campaign = new Campaign();
                     $campaign->ringba_campaign_id = $campaignId;
                     $campaign->save();
                     $number->campaign_id = $campaign->id;
                     $number->save();
                 }
 
-                $contents = Content::where("campaign_id", $camp_id->id)->get();
+                $contents = Content::where("campaign_id", $campaign->id)->get();
+                // echo $contents;
 
 
-                // queues for automatic message
-                echo $contents[0]->body;
+                // // queues for automatic message
+                if( $campaign->is_active == 1 ){
 
-                SendInstantSMS::dispatch($number->callerId, $contents[0]->body);
+                    SendInstantSMS::dispatch($number->callerId, $contents[0]->body);
 
-                SendSMSAfter20Mins::dispatch($number->callerId, $contents[1]->body)
-                    ->delay(now()->addMinutes(20));
+                    SendSMSAfter20Mins::dispatch($number->callerId, $contents[1]->body)
+                        ->delay(now()->addMinutes(20));
 
-//                SendSMSAfter1Hour::dispatch($number->callerId)
-//                    ->delay(now()->addMinutes(20)->addHours(1));
-//
-//                SendSMSAfter2Hours::dispatch($number->callerId)
-//                    ->delay(now()->addHours(01));
-//
-//                SendSMSAfter24Hours::dispatch($number->callerId)
-//                    ->delay((now()->addHours(23)));
-//
-//                SendSMSAfter26Hours::dispatch($number->callerId)
-//                    ->delay(now()->addHours(2));
+                    SendSMSAfter1Hour::dispatch($number->callerId, $contents[2]->body)
+                        ->delay(now()->addMinutes(20)->addHours(1));
+
+                    SendSMSAfter2Hours::dispatch($number->callerId, $contents[3]->body)
+                        ->delay(now()->addHours(01));
+
+                    SendSMSAfter24Hours::dispatch($number->callerId, $contents[4]->body)
+                        ->delay((now()->addHours(23)));
+
+                    // SendSMSAfter26Hours::dispatch($number->callerId, $contents[5]->body)
+                    //     ->delay(now()->addHours(2));
+
+                }
 
                 return response()->json([
                     "status" => "success",

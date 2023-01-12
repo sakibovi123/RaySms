@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Campaign;
 use App\Models\CustomerSendMessage;
+use App\Models\Number;
 use Illuminate\Http\Request;
 
 class DashBoardController extends Controller
@@ -15,8 +17,13 @@ class DashBoardController extends Controller
     public function index()
     {
         $allSents = CustomerSendMessage::all();
+        $countNumbers = Number::all()->count();
+        $countCampaigns = Campaign::all()->count();
+       
         return view("Dashboard.dashboard", [
-            "allSents" => $allSents
+            "allSents" => $allSents,
+            "countNumbers" => $countNumbers,
+            "countCampaigns" => $countCampaigns
         ]);
     }
 

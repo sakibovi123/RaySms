@@ -15,15 +15,17 @@ class SendSMSAfter1Hour implements ShouldQueue
     use Dispatchable, InteractsWithQueue, Queueable, SerializesModels;
 
     private $number;
+    private $content;
     /**
      * Create a new job instance.
      *
      * @return void
      */
 
-    public function __construct(string $number)
+    public function __construct(string $number, string $content)
     {
         $this->number = $number;
+        $this->content = $content;
     }
 
     /**
@@ -36,14 +38,14 @@ class SendSMSAfter1Hour implements ShouldQueue
         $twilio_sid = getenv("TWILIO_SID");
         $twilio_token = getenv("TWILIO_TOKEN");
 
-        $body = "Still not Happy with our 20% discount? We have reserved several special Window Installation & Repair opportunities just for you and your beautiful home - Free Quote, 25% Discount, Buy/Repair 1 Window Get 1 Offer! Grab the ultimate visual experience from today. Call Now: +18887212062 before the offer expires Today!";
+        // $body = "Still not Happy with our 20% discount? We have reserved several special Window Installation & Repair opportunities just for you and your beautiful home - Free Quote, 25% Discount, Buy/Repair 1 Window Get 1 Offer! Grab the ultimate visual experience from today. Call Now: +18887212062 before the offer expires Today!";
 
         $client = new Client($twilio_sid, $twilio_token);
         $client->messages->create(
             $this->number,
             [
                 "from" => "+14696198904",
-                "body" => $body
+                "body" => $this->content,
             ]
         );
 

@@ -58,6 +58,10 @@
                                         @else
                                         <td class="w-1/3 text-left py-3 px-4"><a href="">{{ $content->campaign->ringba_campaign_id }}</a></td>
                                     @endif
+
+                                    <td class="w-1/3 text-left py-3 px-4">
+                                        <a href="{{ url('/edit-content/'.$content->id) }}">Edit</a>
+                                    </td>
                                     
                                 </tr>
                             @endforeach
