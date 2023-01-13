@@ -36,7 +36,7 @@ class NumberController extends Controller
             $campaignId = $request->get("ringba_campaign_id");
             if( strlen( $number->callerId ) > 0 )
             {
-                if( Campaign::where("ringba_campaign_id", "=", $campaignId)->count() > 0 ){
+                if( Campaign::where("ringba_campaign_id", "=", $campaignId)->count() > 0 ) {
                     $campaign = Campaign::where("ringba_campaign_id", $campaignId)->first();
                     $number->campaign_id = $campaign->id;
                     $number->save();
