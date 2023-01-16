@@ -67,7 +67,9 @@ class SendMessageController extends Controller
 
     public function showDetails($id) {
         $sends = SendMessage::find($id)->customer;
-        return $sends;
+        return view("Dashboard.SendMessage.details", [
+            "sends" => $sends
+        ]);
     }
 
 
