@@ -35,7 +35,7 @@
                             <thead class="bg-gray-800 text-white">
                             <tr>
                                 <th class="w-1/3 text-left py-3 px-4 uppercase font-semibold text-sm">Delivered Date</th>
-                                <th class="w-1/3 text-left py-3 px-4 uppercase font-semibold text-sm">Numbers</th>
+                                <th class="w-1/3 text-left py-3 px-4 uppercase font-semibold text-sm">Id</th>
                                 <th class="text-left py-3 px-4 uppercase font-semibold text-sm">Actions</th>
                             </tr>
                             </thead>
@@ -43,11 +43,13 @@
 
                             @foreach($sent as $s)
                                 <tr>
-                                    <td class="w-1/3 text-left py-3 px-4">{{ $s->created_at }}</td>
-                                    <td class="w-1/3 text-left py-3 px-4"></td>
+                                    <td class="w-1/3 text-left py-3 px-4"><a href="{{ url('/view-details/'.$s->id) }}">{{ $s->created_at }}</a></td>
+                                    <td class="w-1/3 text-left py-3 px-4">
+                                        <a href="{{ url('/view-details/'.$s->id) }}">{{ $s->id }}</a>
+                                    </td>
                                     <td class="text-left py-3 px-5 text-2xl" colspan="2">
 {{--                                        <a class="hover:text-blue-500" href="{{ url('/edit-template/'.$template->id) }}"><i class="fas fa-edit"></i></a>--}}
-                                        <form action="{{ url('/delete-template/'.$s->id) }}" method="POST">
+                                        <form action="{{ url('/remove/'.$s->id) }}" method="POST">
                                             @csrf
                                             @method("DELETE")
                                             <button class="hover:text-blue-500" type="submit"><i class="fas fa-trash"></i></button>

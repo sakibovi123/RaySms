@@ -52,7 +52,8 @@ Route::group(["middleware" => "auth"], function () {
     Route::get("/messages", [\App\Http\Controllers\SendMessageController::class, 'template']);
     Route::get("/send-message", [\App\Http\Controllers\SendMessageController::class, 'create']);
     Route::post("/send-message-to-customers", [\App\Http\Controllers\SendMessageController::class, 'send']);
-    Route::get("/view-details/{id}/", [\App\Http\Controllers\SendMessageController::class, 'showDetails']);
+    Route::get("/view-details/{id}", [\App\Http\Controllers\SendMessageController::class, 'showDetails']);
+    Route::delete("/remove/{id}", [\App\Http\Controllers\SendMessageController::class, "remove"]);
 
     // campaigns route
     Route::get("/campaigns", [\App\Http\Controllers\CampaignController::class, "fetch_all_campaigns"])->name("all_campaigns");
