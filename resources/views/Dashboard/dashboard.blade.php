@@ -51,7 +51,7 @@
                             <div class="icon-top rounded-full px-4 py-2">
                             <!-- <i class="fa-sharp fas fa-route text-white text-3xl"></i> -->
                             <i class="fa-sharp fas fa-exclamation text-white text-3xl "></i>
-                            <!-- <img src="../" alt=""> -->
+                            
                             </div>
                         </div>
 
