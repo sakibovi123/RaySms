@@ -93,11 +93,18 @@
         </a>
 </p>
         <p class="{{ 'all_campaigns' == request()->path() ? 'active-nav-link' : '' }}">
-        <a href="{{ route('all_campaigns') }}" class="flex items-center text-white opacity-75 hover:opacity-100 py-4 pl-6 nav-item">
-        <i class="fas fa-compass mr-3"></i>
-            Campaigns
-        </a>
+            <a href="{{ route('all_campaigns') }}" class="flex items-center text-white opacity-75 hover:opacity-100 py-4 pl-6 nav-item">
+            <i class="fas fa-compass mr-3"></i>
+                Campaigns
+            </a>
         </p>
+
+        <p class="{{ 'all_campaigns' == request()->path() ? 'active-nav-link' : '' }}">
+            <a href="{{ route('jobs') }}" class="flex items-center text-white opacity-75 hover:opacity-100 py-4 pl-6 nav-item">
+            <i class="fas fa-compass mr-3"></i>
+                Logs
+            </a>
+            </p>
         <p class="{{ 'logout' == request()->path() ? 'active-nav-link' : '' }}">
         <a href="{{ url("/logout") }}" class="flex items-center text-white opacity-75 hover:opacity-100 py-4 pl-6 nav-item">
             <!-- <i class="fas fa-sign-out "></i> -->

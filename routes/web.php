@@ -72,6 +72,9 @@ Route::group(["middleware" => "auth"], function () {
     Route::put("/update-content/{id}", [\App\Http\Controllers\ContentController::class, 'update'])->name("update-content");
     Route::delete("delete-content/{id}/", [\App\Http\Controllers\ContentController::class, "remove"])->name("remove-content");
 
+    // logs routes
+    Route::get("/logs", [\App\Http\Controllers\JobController::class, "index"])->name("jobs");
+
     // testing sms automation
     Route::post("/auto-message", [\App\Http\Controllers\SendMessageController::class, "send_sms_automatically"]);
 });
