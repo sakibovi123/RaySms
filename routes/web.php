@@ -16,6 +16,8 @@ Route::group(["middleware" => "guest"], function(){
 
 
 Route::group(["middleware" => "auth"], function () {
+    Route::get("/logout", [\App\Http\Controllers\Auth\AuthController::class, "logout"])->name("logout");
+
     Route::get("/", [\App\Http\Controllers\DashBoardController::class, 'index']);
     Route::get("/ringba", [\App\Http\Controllers\TestController::class, "get_ringba_numbers"]);
 
@@ -69,6 +71,9 @@ Route::group(["middleware" => "auth"], function () {
     Route::get("/edit-content/{id}", [\App\Http\Controllers\ContentController::class, 'edit'])->name("edit-content");
     Route::put("/update-content/{id}", [\App\Http\Controllers\ContentController::class, 'update'])->name("update-content");
     Route::delete("delete-content/{id}/", [\App\Http\Controllers\ContentController::class, "remove"])->name("remove-content");
+
+    // logs routes
+    Route::get("/logs", [\App\Http\Controllers\JobController::class, "index"])->name("jobs");
 
     // testing sms automation
     Route::post("/auto-message", [\App\Http\Controllers\SendMessageController::class, "send_sms_automatically"]);
