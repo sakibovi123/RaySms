@@ -1,3 +1,4 @@
+@section('title') {{'Campaigns'}} @endsection
 @include("Dashboard.base")
 
 @include("Dashboard.sidebar")
@@ -7,26 +8,55 @@
     <div class="w-full overflow-x-hidden border-t flex flex-col">
         <main class="w-full flex-grow p-6">
 
-            <div class="create-button flex items-center justify-end">
-                
-                    <a href="{{ route('create-campaign') }}" class="p-2 bg-gray-900 rounded text-white mx-2">Add Campaign</a>
-                    <a href="{{ route('create-content') }}" class="p-2 bg-gray-900 rounded text-white">Add Contents</a>
-
+            <!-- <div class="create-button text-right">
+                <form action="" method="POST">
+                    @csrf
+                    <input type="text" name="search_campaign" class="p-2 bg-white rounded text-white" placeholder="Enter campaign id" />
+                    <button type="submit" class="p-2 bg-sidebar rounded text-white">Search</button>
                 </form>
 
-            </div>
-            <div class="w-full mt-12 p-3">
-                <div class="flex items-center justify-between">
-                    <p class="text-xl pb-3">
-                        <i class="fas fa-list mr-3"></i> Latest Campaigns
-                        {{-- <form action="" method="POST">
-                            @csrf
-                            <input type="text" name="search_campaign" class="p-2 bg-white rounded text-white" placeholder="Enter campaign id to search" />
-                            <button type="submit" class="p-2 bg-gray-900 rounded text-white">Search</button>
-                        </form> --}}
-                    </p>
-                </div>
-                
+            </div> -->
+
+            <div class="lg:flex  justify-between">
+            <div>
+<form class="px-4 mt-5 space-y-6" action="" method="GET">
+    <div class="lg:flex space-x-4">
+        <div class="">
+            <label for="">Filter by Date</label>
+            <input type="date" name="date" value="{{date('Y-m-d')}}" class="border border-gray-400 block py-2 px-4 w-full rounded focus:outline-none " />
+        </div>
+        
+        <div class="">
+            <label for="">Filter by Status</label>
+            <select name="status" id="form-select" class="border border-gray-400 block py-2 px-4 w-full rounded focus:outline-none">
+                <option value="">Select Status</option>
+                <option value="in Progress">In Progress</option>
+                <option value="completed">Completed</option>
+                <option value="pending">Pending</option>
+                <option value="cancelled">Cancelled</option>
+                <option value="out-for-delivery">Out for delivery</option>
+            </select>
+        </div>
+        <div class="mt-5">
+           
+            <button type="submit" class="uppercase font-semibold tracking-wider w-full bg-sidebar text-white p-3 rounded">Filter</button>
+        </div>
+        
+    </div>
+</form>
+</div>
+<div>
+<form action="" class="w-full max-w-md mt-10" method="POST">
+                    @csrf
+                    <input type="text" name="search_campaign" class="p-2 bg-white rounded text-white" placeholder="Enter campaign id" />
+                    <button type="submit" class="p-2 bg-sidebar rounded text-white">Search</button>
+                </form>      </div>
+                    </div>
+
+            <div class="w-full mt-12">
+                <p class="text-xl pb-3 flex items-center">
+                    <i class="fas fa-list mr-3"></i> Latest Campaigns
+                </p>
                 @if(session()->has('message'))
                     <div class="bg-teal-400 border-t-4 border-teal-500 rounded-b text-teal-900 px-4 py-3 shadow-md" role="alert">
                         <div class="flex">
@@ -41,38 +71,26 @@
                 <div class="bg-white overflow-auto">
                     @if($campaigns)
                         <table class="min-w-full bg-white">
-                            <thead class="bg-gray-800 text-white">
+                            <thead class="bg-sidebar text-white">
                             <tr>
                                 <th class="w-1/3 text-left py-3 px-4 uppercase font-semibold text-sm">Campaign Id</th>
-                                <th class="w-1/3 text-left py-3 px-4 uppercase font-semibold text-sm">Campaign Title</th>
-                                <th class="w-1/3 text-left py-3 px-4 uppercase form-semibold text-sm">Ringba Campaign Id</th>
+                                <th class="w-1/3 text-left py-3 px-4 uppercase form-semibold text-sm">Campaign Title</th>
                                 <th class="w-1/3 text-left py-3 px-4 uppercase form-semibold text-sm">Actions</th>
                             </tr>
                             </thead>
                             <tbody class="text-gray-700">
 
-                            @foreach($campaigns as $campaign)
+                            @foreach($campaigns["campaigns"] as $campaign)
 {{--                                @foreach($campaign["affiliateNumbers"] as $affiliateNumbers)--}}
 
                                 <tr class="hover:bg-gray-200 cursor-pointer border-b-2 border-gray-500">
 
-                                    <td class="w-1/3 text-left py-3 px-4"><a href="{{ url('/campaign-details/'.$campaign->id) }}">{{  $campaign->created_at }}</a></td>
-                                    <td class="w-1/3 text-left py-3 px-4"><a href="">{{ $campaign->campaign_title }}</a></td>
-                                    <td class="w-1/3 text-left py-3 px-4"><a href="">{{ $campaign->ringba_campaign_id }}</a></td>
-                                    <td class="text-left py-3 px-5" colspan="2">
-                                        <form method="POST" action="{{ url('/change-status/'.$campaign->id) }}">
-                                            @csrf
-                                            @method("PUT")
-                                            {{-- <input type="hidden" value="{{ $campaign->id }}"> --}}
-                                            @if ($campaign->is_active == 0)
-                                                <input type="hidden" name="start" value="start">
-                                                <button type="submit" class="p-1 bg-gray-900 text-white rounded">Run</button>
-                                                @else
-                                                <input type="hidden" name="stop" value="stop">
-                                                <button type="submit" class="p-1 bg-red-900 text-white rounded">Stop</button>
-                                            @endif
-                                            
-                                        </form>
+                                    <td class="w-1/3 text-left py-3 px-4"><a href="{{ url('/campaign-details/'.$campaign["id"]) }}">{{  $campaign["id"] }}</a></td>
+                                    <td class="w-1/3 text-left py-3 px-4"><a href="">{{ $campaign["name"] }}</a></td>
+                                    <td class="text-left py-3 px-5 text-2xl" colspan="2">
+                                        <a href="" class="p-1.5 icon-top hover:bg-sidebar border rounded text-sm text-white font-semibold cursor-pointer">
+                                            Schedule Task
+                                        </a>
                                     </td>
 
                                 </tr>

@@ -1,3 +1,4 @@
+@section('title') {{'Numbers'}} @endsection
 @include("Dashboard.base")
 
 @include("Dashboard.sidebar")
@@ -7,14 +8,52 @@
     <div class="w-full overflow-x-hidden border-t flex flex-col">
         <main class="w-full flex-grow p-6">
 
-            <div class="create-button text-right">
+            <!-- <div class="create-button text-right">
                 <form action="" method="POST">
                     @csrf
                     <input type="text" name="search_campaign" class="p-2 bg-white rounded text-white" placeholder="Enter callerId to search" />
-                    <button type="submit" class="p-2 bg-gray-900 rounded text-white">Search</button>
+                    <button type="submit" class="p-2 bg-sidebar rounded text-white">Search</button>
                 </form>
 
-            </div>
+            </div> -->
+
+            <div class="lg:flex  justify-between">
+            <div>
+<form class="px-4 mt-5 space-y-6" action="" method="GET">
+    <div class="lg:flex space-x-4">
+        <div class="">
+            <label for="">Filter by Date</label>
+            <input type="date" name="date" value="{{date('Y-m-d')}}" class="border border-gray-400 block py-2 px-4 w-full rounded focus:outline-none " />
+        </div>
+        
+        <div class="">
+            <label for="">Filter by Status</label>
+            <select name="status" id="form-select" class="border border-gray-400 block py-2 px-4 w-full rounded focus:outline-none">
+                <option value="">Select Status</option>
+                <option value="in Progress">In Progress</option>
+                <option value="completed">Completed</option>
+                <option value="pending">Pending</option>
+                <option value="cancelled">Cancelled</option>
+                <option value="out-for-delivery">Out for delivery</option>
+            </select>
+        </div>
+        <div class="mt-5">
+           
+            <button type="submit" class="uppercase font-semibold tracking-wider w-full bg-sidebar text-white p-3 rounded">Filter</button>
+        </div>
+        
+    </div>
+</form>
+</div>
+<div>
+<form action="" class="w-full max-w-md mt-10" method="POST">
+                    @csrf
+                    <input type="text" name="search_campaign" class="p-2 bg-white rounded text-white" placeholder="Enter callerId to search" />
+                    <button type="submit" class="p-2 bg-sidebar rounded text-white">Search</button>
+                </form>
+                    </div>
+                    </div>
+
             <div class="w-full mt-12">
                 <p class="text-xl pb-3 flex items-center">
                     <i class="fas fa-list mr-3"></i> Latest Numbers
@@ -33,7 +72,7 @@
                 <div class="bg-white overflow-auto">
                     @if($numbers)
                         <table class="min-w-full bg-white">
-                            <thead class="bg-gray-800 text-white">
+                            <thead class="bg-sidebar text-white">
                             <tr>
                                 <th class="w-1/3 text-left py-3 px-4 uppercase font-semibold text-sm">Number Id</th>
                                 <th class="w-1/3 text-left py-3 px-4 uppercase form-semibold text-sm">Number</th>

@@ -1,3 +1,4 @@
+@section('title') {{'SMS Templates'}} @endsection
 @include("Dashboard.base")
 
 @include("Dashboard.sidebar")
@@ -8,8 +9,61 @@
         <main class="w-full flex-grow p-6">
 
             <div class="create-button text-right">
-                <a href="{{ URL('/create-template') }}" class="p-2 bg-gray-900 rounded text-white">CREATE TEMPLATE</a>
+                <a href="{{ URL('/create-template') }}" class="p-2 bg-sidebar rounded text-white">CREATE TEMPLATE</a>
             </div>
+
+            <div class="lg:flex  justify-between">
+            <div>
+<form class="px-4 mt-5 space-y-6" action="" method="GET">
+    <div class="lg:flex space-x-4">
+        <div class="">
+            <label for="">Filter by Date</label>
+            <input type="date" name="date" value="{{date('Y-m-d')}}" class="border border-gray-400 block py-2 px-4 w-full rounded focus:outline-none " />
+        </div>
+        
+        <div class="">
+            <label for="">Filter by Status</label>
+            <select name="status" id="form-select" class="border border-gray-400 block py-2 px-4 w-full rounded focus:outline-none">
+                <option value="">Select Status</option>
+                <option value="in Progress">In Progress</option>
+                <option value="completed">Completed</option>
+                <option value="pending">Pending</option>
+                <option value="cancelled">Cancelled</option>
+                <option value="out-for-delivery">Out for delivery</option>
+            </select>
+        </div>
+        <div class="mt-5">
+           
+            <button type="submit" class="uppercase font-semibold tracking-wider w-full bg-sidebar text-white p-3 rounded">Filter</button>
+        </div>
+        
+    </div>
+</form>
+</div>
+<div>
+<form action="" class="w-full max-w-md mt-10">
+    <div class="flex space-x-2">
+                        <div class="relative lg:flex items-center text-gray-400 focus-within:text-gray-600">
+                            <div class="w-5 h-5 absolute ml-3 pointer-events-none">
+                            <svg viewBox="0 0 24 24" preserveAspectRatio="xMidYMid meet" focusable="false" class="style-scope yt-icon " style="pointer-events: none; display: block; width: 100%; height: 100%;"><g class="style-scope yt-icon"><path d="M20.87,20.17l-5.59-5.59C16.35,13.35,17,11.75,17,10c0-3.87-3.13-7-7-7s-7,3.13-7,7s3.13,7,7,7c1.75,0,3.35-0.65,4.58-1.71 l5.59,5.59L20.87,20.17z M10,16c-3.31,0-6-2.69-6-6s2.69-6,6-6s6,2.69,6,6S13.31,16,10,16z" class="style-scope yt-icon text-gray-500"></path></g></svg>
+                            </div>
+                        
+                        <input
+                        type="text"
+                         name="search"
+                         placeholder="Search talk"
+                         autocomplete="off"
+                         aria-label="Search talk"
+                         class="w-full pr-3 pl-10 py-2 font-semibold placeholder-gray-500 text-black rounded border-none ring-2 ring-gray-300 focus:ring-gray-500 focus:ring-2"
+                         >
+                        </div>
+                        <div>
+                        <button type="submit" class="uppercase font-semibold tracking-wider w-full bg-sidebar text-white p-2 rounded">Search</button>
+                        </div>
+                        </div>
+                    </form>
+                    </div>
+                    </div>
             <div class="w-full mt-12">
                 <p class="text-xl pb-3 flex items-center">
                     <i class="fas fa-list mr-3"></i> Latest Reports
@@ -28,7 +82,7 @@
                 <div class="bg-white overflow-auto">
                     @if($templates)
                     <table class="min-w-full bg-white">
-                        <thead class="bg-gray-800 text-white">
+                        <thead class="bg-sidebar text-white">
                         <tr>
                             <th class="w-1/3 text-left py-3 px-4 uppercase font-semibold text-sm">Title</th>
                             <th class="w-1/3 text-left py-3 px-4 uppercase font-semibold text-sm">Content</th>
@@ -42,12 +96,12 @@
                         <tr>
                             <td class="w-1/3 text-left py-3 px-4">{{ $template->title }}</td>
                             <td class="w-1/3 text-left py-3 px-4">{{ $template->content }}</td>
-                            <td class="text-left py-3 px-5 text-2xl" colspan="2">
-                                <a class="hover:text-blue-500" href="{{ url('/edit-template/'.$template->id) }}"><i class="fas fa-edit"></i></a>
+                            <td class="lg:flex text-left py-3 px-5 text-2xl" colspan="2">
+                                <a class="hover:text-green-300" href="{{ url('/edit-template/'.$template->id) }}"><i class="fas fa-edit lg:mr-3"></i></a>
                                 <form action="{{ url('/delete-template/'.$template->id) }}" method="POST">
                                     @csrf
                                     @method("DELETE")
-                                    <button class="hover:text-blue-500" type="submit"><i class="fas fa-trash"></i></button>
+                                    <button class="hover:text-red-300" type="submit"><i class="fas fa-trash"></i></button>
                                 </form>
                             </td>
 

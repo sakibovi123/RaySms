@@ -1,3 +1,4 @@
+@section('title') {{'SMS Templates'}} @endsection
 @include("Dashboard.base")
 
 @include("Dashboard.sidebar")
