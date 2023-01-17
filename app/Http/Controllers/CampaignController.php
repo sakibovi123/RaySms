@@ -18,6 +18,16 @@ class CampaignController extends Controller
         ]);
     }
 
+    public function index()
+    {
+        //Query builder
+        //$campaigns = DB::table('campaigns')->paginate(4);
+        $campaigns = Campaigns::paginate(3);
+        return view('Dashboard.Campaigns.index', [
+            'campaigns' => $campaigns
+        ]);
+    }
+
 
     // create function
     public function create(){

@@ -99,9 +99,11 @@
 
                             @endforeach
                             </tbody>
+                            <!-- {{ $campaigns->links() }} -->
                         </table>
                     @endif
                 </div>
+                
             </div>
         </main>
 
