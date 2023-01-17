@@ -75,6 +75,18 @@ Route::group(["middleware" => "auth"], function () {
     // logs routes
     Route::get("/logs", [\App\Http\Controllers\JobController::class, "index"])->name("jobs");
 
+// Tab routes
+    Route::get('/tab1', function(){
+        return view('tab1');
+    });
+    Route::get('/tab2', function(){
+        return view('tab2');
+    });
+    Route::get('/tab3', function(){
+return view('tab3');
+    });
+    
+
     // testing sms automation
     Route::post("/auto-message", [\App\Http\Controllers\SendMessageController::class, "send_sms_automatically"]);
 });

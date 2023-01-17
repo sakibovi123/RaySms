@@ -28,13 +28,13 @@
                type="text" name="name" placeholder="Username"
                class="text-sm text-gray-base w-full
 							mr-3 py-5 px-4 h-2 border
-							border-gray-200 rounded mb-2" />
+							border-gray-200 rounded mb-2 hover:outline-none focus:outline-none focus:ring-1 focus:ring-[#032738]" />
                             <label class="block mt-3 font-semibold" for="">Password</label>
         <input aria-label="Enter your password"
                type="password" name="password" placeholder="Password"
                class="text-sm text-gray-base w-full mr-3
 							py-5 px-4 h-2 border border-gray-200
-							rounded mb-2" />
+							rounded mb-2 hover:outline-none focus:outline-none focus:ring-1 focus:ring-[#032738]" />
 
         <button type="submit"
                 class="bg-sidebar text-white py-2 w-full mt-4 rounded-md hover:bg-teal-800">
