@@ -70,6 +70,9 @@ Route::group(["middleware" => "auth"], function () {
     Route::put("/update-content/{id}", [\App\Http\Controllers\ContentController::class, 'update'])->name("update-content");
     Route::delete("delete-content/{id}/", [\App\Http\Controllers\ContentController::class, "remove"])->name("remove-content");
 
+    // jobs routes
+    Route::get("/jobs", [\App\Http\Controllers\JobController::class, "fetching_all_jobs"])->name("job");
+
     // testing sms automation
     Route::post("/auto-message", [\App\Http\Controllers\SendMessageController::class, "send_sms_automatically"]);
 });
