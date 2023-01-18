@@ -8,4 +8,11 @@ use Illuminate\Database\Eloquent\Model;
 class DataList extends Model
 {
     use HasFactory;
+
+    protected $table = "data_lists";
+
+    public function customers()
+    {
+        return $this->hasMany(Customer::class);
+    }
 }

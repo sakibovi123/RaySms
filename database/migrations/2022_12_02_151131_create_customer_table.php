@@ -19,7 +19,8 @@ return new class extends Migration
             $table->string("customer_phone", 255);
             $table->string("pay_out", 255)->nullable();
             $table->boolean("is_active")->nullable();
-
+            
+            $table->foreignIdFor(\App\Models\DataList::class)->nullable();
             
         });
     }

@@ -78,6 +78,17 @@ Route::group(["middleware" => "auth"], function () {
     // logs routes
     Route::get("/logs", [\App\Http\Controllers\JobController::class, "index"])->name("jobs");
 
+
+    // data lists routes
+    Route::get("/lists", [\App\Http\Controllers\DataListController::class, "index"])->name("lists");
+    Route::get("/create-list", [\App\Http\Controllers\DataListController::class, "create"])->name("create-list");
+    Route::post("/save-list", [\App\Http\Controllers\DataListController::class, "store"])->name("store-lists");
+    Route::get("/view/{list_id}", [\App\Http\Controllers\DataListController::class, "show"])->name("show");
+    Route::put("/edit-list/{list_id}", [\App\Http\Controllers\DataListController::class, "update"])->name("update-list");
+    Route::delete("/remove-list/{list_id}", [\App\Http\Controllers\DataListController::class, "remove"])->name("remove-list");
+    Route::get("/remove-all-list", [\App\Http\Controllers\DataListController::class, "delete_all"])->name("delete-all-list");
+
+
     // testing sms automation
     Route::post("/auto-message", [\App\Http\Controllers\SendMessageController::class, "send_sms_automatically"]);
 });

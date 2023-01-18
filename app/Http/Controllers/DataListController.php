@@ -82,7 +82,7 @@ class DataListController extends Controller
 
 
     // getting details and adding numbers
-    public function add_numbers_list_wise($list_id)
+    public function show($list_id)
     {
         $customers_phone = Customer::where("id", $list_id)->get();
 

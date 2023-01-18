@@ -17,4 +17,9 @@ class Customer extends Model
         return $this->belongsToMany(SendMessage::class, "customer_send_message");
     }
 
+    public function data_lists()
+    {
+        return $this->belongsTo(DataList::class);
+    }
+
 }
