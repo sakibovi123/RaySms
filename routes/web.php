@@ -42,6 +42,8 @@ Route::group(["middleware" => "auth"], function () {
 // Customers url
 
     Route::get("/customers", [\App\Http\Controllers\CustomerController::class, 'index']);
+    Route::get("/add-customer", [\App\Http\Controllers\CustomerController::class, "create"]);
+    Route::post("/save-customer", [\App\Http\Controllers\CustomerController::class, "create_customer_manually"]);
     Route::post("/import-customers", [\App\Http\Controllers\CustomerController::class, 'importCustomers']);
     Route::delete("/delete-customer/{id}/", [\App\Http\Controllers\CustomerController::class, 'destroy']);
     Route::get("/create-customer", [\App\Http\Controllers\CustomerController::class, "create"])->name("create-customer");
@@ -82,7 +84,7 @@ Route::group(["middleware" => "auth"], function () {
     // data lists routes
     Route::get("/lists", [\App\Http\Controllers\DataListController::class, "index"])->name("lists");
     Route::get("/create-list", [\App\Http\Controllers\DataListController::class, "create"])->name("create-list");
-    Route::post("/save-list", [\App\Http\Controllers\DataListController::class, "store"])->name("store-lists");
+    Route::post("/save-lists", [\App\Http\Controllers\DataListController::class, "store"])->name("store-lists");
     Route::get("/view/{list_id}", [\App\Http\Controllers\DataListController::class, "show"])->name("show");
     Route::put("/edit-list/{list_id}", [\App\Http\Controllers\DataListController::class, "update"])->name("update-list");
     Route::delete("/remove-list/{list_id}", [\App\Http\Controllers\DataListController::class, "remove"])->name("remove-list");

@@ -18,7 +18,7 @@
                     <i class="fas fa-list mr-3"></i> All Campaigns For Bulk SMS
                 </p>
                 @if(session()->has('message'))
-                    <div class="bg-teal-400 border-t-4 border-teal-500 rounded-b text-teal-900 px-4 py-3 shadow-md" role="alert">
+                    <div class="bg-red-400 border-t-4 border-teal-500 rounded-b text-teal-900 px-4 py-3 shadow-md" role="alert">
                         <div class="flex">
                             <div class="py-1"><svg class="fill-current h-6 w-6 text-teal-500 mr-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"><path d="M2.93 17.07A10 10 0 1 1 17.07 2.93 10 10 0 0 1 2.93 17.07zm12.73-1.41A8 8 0 1 0 4.34 4.34a8 8 0 0 0 11.32 11.32zM9 11V9h2v6H9v-4zm0-6h2v2H9V5z"/></svg></div>
                             <div>
@@ -44,12 +44,12 @@
 
                             @foreach($lists as $l)
                                 <tr>
-                                    <td class="w-1/3 text-left py-3 px-4"><a href="{{ url('/view-list-details/'.$l->list_id) }}">{{ $l->created_at }}</a></td>
+                                    <td class="w-1/3 text-left py-3 px-4"><a href="{{ url('/view/'.$l->list_id) }}">{{ $l->created_at }}</a></td>
                                     <td class="w-1/3 text-left py-3 px-4"><a href="">{{ $l->list_id }}</a></td>
                                     <td class="w-1/3 text-left py-3 px-4"><a href="">{{ $l->title }}</a></td>
                                     <td class="text-left py-3 px-5 text-2xl" colspan="2">
 {{--                                        <a class="hover:text-blue-500" href="{{ url('/edit-template/'.$template->id) }}"><i class="fas fa-edit"></i></a>--}}
-                                        <form action="" method="POST" enctype="multipart/form-data">
+                                        <form action="{{ url('/remove-list/'.$l->id) }}" method="POST">
                                             @csrf
                                             @method("DELETE")
                                             <button class="hover:text-blue-500" type="submit"><i class="fas fa-trash"></i></button>

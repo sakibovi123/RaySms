@@ -16,7 +16,7 @@ class DataListController extends Controller
 
     public function index()
     {
-        $lists = DataList::all()->sortBy("-created_at");
+        $lists = DataList::all()->sortByDesc("created_at");
         return view("Dashboard.List.lists", [
             "lists" => $lists
         ]);
@@ -44,26 +44,7 @@ class DataListController extends Controller
         $list->list_id = $this->generate_random_string();
         $list->title = $request->get("title");
 
-        // $list->save();
-        // saving customers first
-        // $customer_phones = Excel::import(new CustomerImport)->toCollection($request->file("excel_file"));
-
-        $customer_phones = (new CustomerImport)->toCollection($request->file("excel_file"));
-        // $customer_phones->toJson()
-        foreach ($customer_phones as $value) {
-            print_r($value);
-            die();
-            // foreach($value as $val){
-            //     echo $val;
-            //     die();
-            // }
-            
-            
-        }
-        // $list->customers()->save($customer_phone);
-
-        
-
+        $list->save();
         return back()->with("message", "Campaign Added");
     }
 
@@ -84,11 +65,17 @@ class DataListController extends Controller
     // getting details and adding numbers
     public function show($list_id)
     {
-        $customers_phone = Customer::where("id", $list_id)->get();
-
-        echo $customers_phone;
+        $list = DataList::where("list_id", $list_id)->first();
+        $customer = Customer::whereIn("data_list_id", $list)->get();
+        
+        return view("Dashboard.List.list_wise", [
+            "list" => $list,
+            "customer" => $customer 
+        ]);
     }
 
+
+    // importing customers
     
     // editing template view
     public function edit($list_id)
@@ -119,9 +106,9 @@ class DataListController extends Controller
     // removing list by id one by one
     public function remove($list_id)
     {
-        $list = DataList::where("list_id", "=", $list_id)->first();
+        $list = DataList::find($list_id);
         $list->delete();
-        return redirect()->with("message", "Data List Deleted");
+        return back()->with("message", "Data List Deleted");
     }
 
 

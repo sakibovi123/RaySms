@@ -17,7 +17,7 @@ return new class extends Migration
             $table->id();
             $table->timestamps();
             $table->string("list_id", 11);
-            $table->string("title, 255");
+            $table->string("title", 255);
         });
     }
 

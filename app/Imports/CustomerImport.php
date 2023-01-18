@@ -16,12 +16,20 @@ class CustomerImport implements ToModel, WithHeadingRow
     */
 
     use Importable;
+    private $listId;
+
+    public function __construct($listId)
+    {
+        $this->listId = $listId;
+    }
+
+
 
     public function model(array $row)
     {
         return new Customer([
-
-            "customer_phone" => $row["customer_phone"]
+            "customer_phone" => $row["customer_phone"],
+            "data_list_id" => $this->listId
         ]);
 
 

@@ -7,12 +7,16 @@
     <div class="w-full overflow-x-hidden border-t flex flex-col">
         <main class="w-full flex-grow p-6">
 
-            <div class="create-button text-right">
+            <div class=" flex items-center justify-between create-button">
                 <form action="{{ URL("/import-customers") }}" method="POST" enctype="multipart/form-data">
                     @csrf
                     <input type="file" name="excel_file" class="p-2 bg-gray-900 rounded text-white" />
                     <button type="submit" class="p-2 bg-gray-900 rounded text-white">Import</button>
                 </form>
+
+                <a href="{{ url('/add-customer') }}" class="p-2 bg-gray-900 rounded text-white hover:bg-gray-700">
+                    ADD CUSTOMER
+                </a>
 
             </div>
             <div class="w-full mt-12">
