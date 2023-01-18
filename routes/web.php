@@ -1,5 +1,6 @@
 <?php
 
+
 use Illuminate\Support\Facades\Route;
 
 // Auth Urls
@@ -72,6 +73,15 @@ Route::group(["middleware" => "auth"], function () {
     Route::get("/edit-content/{id}", [\App\Http\Controllers\ContentController::class, 'edit'])->name("edit-content");
     Route::put("/update-content/{id}", [\App\Http\Controllers\ContentController::class, 'update'])->name("update-content");
     Route::delete("delete-content/{id}/", [\App\Http\Controllers\ContentController::class, "remove"])->name("remove-content");
+
+    // Data lists routes
+    Route::get("/lists", [\App\Http\Controllers\DataListController::class, "index"])->name("lists");
+    Route::get("/create-list", [\App\Http\Controllers\DataListController::class, "create"])->name("create-list");
+    Route::post("/save-lists", [\App\Http\Controllers\DataListController::class, "store"])->name("store-list");
+    Route::get("/view-list-details/{list_id}", [\App\Http\Controllers\DataListController::class, "add_numbers_list_wise"])->name("list-details");
+    Route::put("/update-list/{list_id}", [\App\Http\Controllers\DataListController::class, "update"])->name("update-list");
+    Route::delete("/delete-list/{list_id}", [App\Http\Controllers\DataListController::class, "remove"])->name("remove-list");
+    Route::get("/remove-all", [\App\Http\Controllers\DataListController::class, "delete_all"])->name("remove-all-lists");
 
     // logs routes
     Route::get("/logs", [\App\Http\Controllers\JobController::class, "index"])->name("jobs");

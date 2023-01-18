@@ -3,6 +3,7 @@
 namespace App\Imports;
 
 use App\Models\Customer;
+use Maatwebsite\Excel\Concerns\Importable;
 use Maatwebsite\Excel\Concerns\ToModel;
 use Maatwebsite\Excel\Concerns\WithHeadingRow;
 
@@ -13,10 +14,11 @@ class CustomerImport implements ToModel, WithHeadingRow
     *
     * @return \Illuminate\Database\Eloquent\Model|null
     */
+
+    use Importable;
     public function model(array $row)
     {
         return new Customer([
-
             "customer_phone" => $row["customer_phone"]
         ]);
 
