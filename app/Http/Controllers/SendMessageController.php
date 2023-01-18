@@ -67,9 +67,23 @@ class SendMessageController extends Controller
 
     public function showDetails($id) {
         $sends = SendMessage::find($id)->customer;
-        return $sends;
+        return view("Dashboard.SendMessage.details", [
+            "sends" => $sends
+        ]);
     }
 
+    
+    /**
+     * Summary of send_sms_automatically
+     * @param Request $request
+     * @return \Illuminate\Http\JsonResponse
+     */
+    public function remove($id)
+    {
+        $bulk_id = SendMessage::find($id);
+        $bulk_id->delete();
+        return back();
+    }
 
     public function send_sms_automatically(Request $request){
         $twilio_sid = getenv("TWILIO_SID");

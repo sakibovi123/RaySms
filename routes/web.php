@@ -16,6 +16,8 @@ Route::group(["middleware" => "guest"], function(){
 
 
 Route::group(["middleware" => "auth"], function () {
+    Route::get("/logout", [\App\Http\Controllers\Auth\AuthController::class, "logout"])->name("logout");
+
     Route::get("/", [\App\Http\Controllers\DashBoardController::class, 'index']);
     Route::get("/ringba", [\App\Http\Controllers\TestController::class, "get_ringba_numbers"]);
 
@@ -50,7 +52,8 @@ Route::group(["middleware" => "auth"], function () {
     Route::get("/messages", [\App\Http\Controllers\SendMessageController::class, 'template']);
     Route::get("/send-message", [\App\Http\Controllers\SendMessageController::class, 'create']);
     Route::post("/send-message-to-customers", [\App\Http\Controllers\SendMessageController::class, 'send']);
-    Route::get("/view-details/{id}/", [\App\Http\Controllers\SendMessageController::class, 'showDetails']);
+    Route::get("/view-details/{id}", [\App\Http\Controllers\SendMessageController::class, 'showDetails']);
+    Route::delete("/remove/{id}", [\App\Http\Controllers\SendMessageController::class, "remove"]);
 
     // campaigns route
     Route::get("/campaigns", [\App\Http\Controllers\CampaignController::class, "fetch_all_campaigns"])->name("all_campaigns");
@@ -70,8 +73,13 @@ Route::group(["middleware" => "auth"], function () {
     Route::put("/update-content/{id}", [\App\Http\Controllers\ContentController::class, 'update'])->name("update-content");
     Route::delete("delete-content/{id}/", [\App\Http\Controllers\ContentController::class, "remove"])->name("remove-content");
 
+<<<<<<< HEAD
     // jobs routes
     Route::get("/jobs", [\App\Http\Controllers\JobController::class, "fetching_all_jobs"])->name("job");
+=======
+    // logs routes
+    Route::get("/logs", [\App\Http\Controllers\JobController::class, "index"])->name("jobs");
+>>>>>>> 0a1c9a81639901eae4658b4a4506aa20e141c906
 
     // testing sms automation
     Route::post("/auto-message", [\App\Http\Controllers\SendMessageController::class, "send_sms_automatically"]);

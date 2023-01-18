@@ -8,11 +8,12 @@
         <main class="w-full flex-grow p-6">
 
             <div class="create-button text-right">
-                <a href="{{ URL('/send-message') }}" class="p-2 bg-gray-900 rounded text-white">Send Message</a>
+              
+
             </div>
             <div class="w-full mt-12">
                 <p class="text-xl pb-3 flex items-center">
-                    <i class="fas fa-list mr-3"></i> Latest Reports
+                    <i class="fas fa-list mr-3"></i> List of numbers
                 </p>
                 @if(session()->has('message'))
                     <div class="bg-teal-400 border-t-4 border-teal-500 rounded-b text-teal-900 px-4 py-3 shadow-md" role="alert">
@@ -26,34 +27,25 @@
                     </div>
                 @endif
                 <div class="bg-white overflow-auto">
-                    @if(session()->has("numbers"))
-                        {{ session()->get("numbers") }}
-                    @endif
-
-                    @if($sent)
+                    @if($sends)
                         <table class="min-w-full bg-white">
                             <thead class="bg-gray-800 text-white">
                             <tr>
-                                <th class="w-1/3 text-left py-3 px-4 uppercase font-semibold text-sm">Delivered Date</th>
-                                <th class="w-1/3 text-left py-3 px-4 uppercase font-semibold text-sm">Id</th>
-                                <th class="text-left py-3 px-4 uppercase font-semibold text-sm">Actions</th>
+                                <th class="w-1/3 text-left py-3 px-4 uppercase font-semibold text-sm">Customer Numbers</th>
+
+
+                                <th class="text-center py-3 px-4 uppercase font-semibold text-sm">Status</th>
                             </tr>
                             </thead>
                             <tbody class="text-gray-700">
 
-                            @foreach($sent as $s)
+                            @foreach($sends as $number)
                                 <tr>
-                                    <td class="w-1/3 text-left py-3 px-4"><a href="{{ url('/view-details/'.$s->id) }}">{{ $s->created_at }}</a></td>
-                                    <td class="w-1/3 text-left py-3 px-4">
-                                        <a href="{{ url('/view-details/'.$s->id) }}">{{ $s->id }}</a>
-                                    </td>
-                                    <td class="text-left py-3 px-5 text-2xl" colspan="2">
-{{--                                        <a class="hover:text-blue-500" href="{{ url('/edit-template/'.$template->id) }}"><i class="fas fa-edit"></i></a>--}}
-                                        <form action="{{ url('/remove/'.$s->id) }}" method="POST">
-                                            @csrf
-                                            @method("DELETE")
-                                            <button class="hover:text-blue-500" type="submit"><i class="fas fa-trash"></i></button>
-                                        </form>
+                                    <td class="w-1/3 text-left py-3 px-4">{{ $number->customer_phone }}</td>
+
+                                    <td class="text-center" colspan="2">
+
+                                       <a class="bg-green-400 p-1.5 text-sm font-bold rounded">Delivered</a> 
                                     </td>
 
                                 </tr>

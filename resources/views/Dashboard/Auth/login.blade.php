@@ -1,10 +1,10 @@
+@section('title') {{'Login'}} @endsection
+
 @include("Dashboard.base")
 
-<div class="h-screen flex flex-col items-center justify-center mx-auto">
+<div class="h-screen flex flex-col items-center justify-center  mx-auto">
 
-    <p class="text-green-700 text-xl mb-3 m-4">
-        Welcome to TEXTRAY
-    </p>
+   
     @if(session()->has('message'))
         <div class="bg-teal-400 border-t-4 border-teal-500 rounded-b text-teal-900 px-4 py-3 shadow-md" role="alert">
             <div class="flex">
@@ -16,15 +16,20 @@
             </div>
         </div>
     @endif
-
-    <form class="" method="POST" action="{{ URL('/login') }}">
+    
+    <form class="bg-gray-200 p-8 rounded-md" method="POST" action="{{ URL('/login') }}">
         @csrf
         @method("POST")
+        <p class="text-green-700 lg:text-3xl text-xl login-text font-semibold mb-3 mt-4 mb-8">
+        Welcome to SMS Platform
+    </p>
+        <label class="block font-semibold" for="">Username</label>
         <input aria-label="Enter your username"
                type="text" name="name" placeholder="Username"
                class="text-sm text-gray-base w-full
 							mr-3 py-5 px-4 h-2 border
 							border-gray-200 rounded mb-2" />
+                            <label class="block mt-3 font-semibold" for="">Password</label>
         <input aria-label="Enter your password"
                type="password" name="password" placeholder="Password"
                class="text-sm text-gray-base w-full mr-3
@@ -32,9 +37,10 @@
 							rounded mb-2" />
 
         <button type="submit"
-                class="bg-green-400 w-full mt-4">
+                class="bg-sidebar text-white py-2 w-full mt-4 rounded-md hover:bg-teal-800">
             Login
         </button>
+        <div class="mt-5 "> <p class=""><span>Or </span> <a class="login-text hover:underline" href="/register">register now !</a></p></div>
     </form>
 
 </div>
