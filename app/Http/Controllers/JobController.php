@@ -2,16 +2,12 @@
 
 namespace App\Http\Controllers;
 
-<<<<<<< HEAD
 use App\Models\FailedJobs;
 use App\Models\Jobs;
-=======
->>>>>>> 0a1c9a81639901eae4658b4a4506aa20e141c906
 use Illuminate\Http\Request;
 
 class JobController extends Controller
 {
-<<<<<<< HEAD
     // viewing all the jobs failed or success
     public function fetching_all_jobs()
     {
@@ -24,7 +20,6 @@ class JobController extends Controller
     }
 
 
-=======
     /**
      * Display a listing of the resource.
      */
@@ -100,5 +95,4 @@ class JobController extends Controller
     {
         //
     }
->>>>>>> 0a1c9a81639901eae4658b4a4506aa20e141c906
 }

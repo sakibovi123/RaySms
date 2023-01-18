@@ -5,11 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Jobs extends Model
+class DataList extends Model
 {
     use HasFactory;
-
-    protected $table = "jobs";
-
-    
 }
