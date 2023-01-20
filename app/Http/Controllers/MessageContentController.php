@@ -15,7 +15,7 @@ class MessageContentController extends Controller
      */
     public function index()
     {
-        $templates = MessageContentModel::all()->sortBy("create_at");
+        $templates = MessageContentModel::all()->sortBy("created_at");
         // $templates = DB::table('messagecontent')->orderBy("created_at");
         return view(
             "Dashboard.Message.templates", [
@@ -110,5 +110,18 @@ class MessageContentController extends Controller
         $template->delete();
 
         return redirect("/templates")->with("message", "Template Deleted!");
+    }
+
+    /**
+     * Remove the specified resource from storage.
+     *
+     * @param  \App\Models\MessageContentModel  $messageContentModel
+     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
+     */
+    public function remove_all()
+    {
+        DB::table("messagecontent")->delete();
+        return back()
+            ->with("message", "deleted successfully");
     }
 }

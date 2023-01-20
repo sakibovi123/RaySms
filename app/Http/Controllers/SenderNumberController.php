@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\SendNumberModel;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class SenderNumberController extends Controller
 {
@@ -50,5 +51,13 @@ class SenderNumberController extends Controller
         $number = SendNumberModel::find($id);
         $number->delete();
         return redirect("/sender-numbers")->with("message", "Deleted!");
+    }
+
+
+    public function remove_all()
+    {
+        DB::table("sendernumber")->delete();
+        return back()
+            ->with("message", "deleted successfully");
     }
 }

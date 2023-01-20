@@ -3,11 +3,13 @@
 namespace App\Http\Controllers;
 
 use App\Models\Customer;
+use App\Models\DataList;
 use App\Models\MessageContentModel;
 use App\Models\SendMessage;
 use App\Models\SendNumberModel;
 use Exception;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use Twilio\Rest\Client;
 
 
@@ -25,10 +27,12 @@ class SendMessageController extends Controller
         $templates = MessageContentModel::all();
         $numbers = SendNumberModel::all();
         $customers = Customer::all();
+        $lists = DataList::all()->sortByDesc("created_at");
         return view("Dashboard.SendMessage.send_message", [
             "templates" => $templates,
             "numbers" => $numbers,
-            "customers" => $customers
+            "customers" => $customers,
+            "lists" => $lists
         ]);
     }
 
@@ -42,8 +46,9 @@ class SendMessageController extends Controller
         $sendmessage->sender_number_id = $senderNumber->id;
         $arr = [];
         $sendmessage->save();
-        $customers = Customer::whereIn("id", $request->input("customer_id"))->get();
+        $list = $request->get("list");
 
+        $customers = Customer::where("data_list_id", "=", $list)->get();
         foreach($customers as $customer){
             $sendmessage->customer()->attach($customer->id);
             try{
@@ -55,7 +60,8 @@ class SendMessageController extends Controller
                         "body" => $sendmessage->messageContent->content,
                     ]
                 );
-
+                $customer->is_active = 1;
+                $customer->save();
                 $arr[] = $customer->customer_phone;
             } catch(Exception $e){
                 echo $e->getMessage();
@@ -76,7 +82,7 @@ class SendMessageController extends Controller
     /**
      * Summary of send_sms_automatically
      * @param Request $request
-     * @return \Illuminate\Http\JsonResponse
+     * @return \Illuminate\Http\Response
      */
     public function remove($id)
     {
@@ -85,34 +91,14 @@ class SendMessageController extends Controller
         return back();
     }
 
-    public function send_sms_automatically(Request $request){
-        $twilio_sid = getenv("TWILIO_SID");
-        $twilio_token = getenv("TWILIO_TOKEN");
 
-        $from = $request->get("+13085299517");
-        $content = $request->get("Shaon ekta magi madarchod ekta");
-
-        // $customers = Customer::whereNotNull("pay_out");
-        $customers = Customer::all();
-        foreach ($customers as $customer){
-            try{
-                $client = new Client("ACc72efb4c899abd80ad51d30c04f26b24", "a407119d3969d3901b1db160ff1470d6");
-                $client->messages->create(
-                   $customer->customer_phone,
-                    [
-                        "from" => "+13085299517",
-                        "body" => "TESTING MESSAGE CONTENT BUY TEST PRODUCTS MY FRIEND THANK YOU AND FUCK YOU",
-                    ]
-                );
-
-                return response()->json([
-                    "status" => true
-                ]);
-            }
-            catch(Exception $e){
-                echo $e->getMessage();
-            }
-        }
-    }
+    /**
+     * removing all of the data from send_messages db.
+     */
+    public function remove_all()
+    {
+        DB::table("send_messages")->delete();
+        return back()->with("message", "Deleted Susccessfully!");
+    } 
 
 }

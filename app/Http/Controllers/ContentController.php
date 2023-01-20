@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Campaign;
 use App\Models\Content;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class ContentController extends Controller
 {
@@ -74,6 +75,10 @@ class ContentController extends Controller
         return redirect("")
             ->with("message", "deleted successfully");
     }
+
+
+    // deleting all contents
+    
 
 
 }

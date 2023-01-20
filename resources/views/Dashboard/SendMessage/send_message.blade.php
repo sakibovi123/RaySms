@@ -38,13 +38,21 @@
                             </select>
                         </div>
                         <div class="mb-6">
+                            <label for="message" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Select Campaign</label>
+                            <select required name="list" id="" class="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 dark:shadow-sm-light">
+                                @foreach($lists as $list)
+                                    <option value="{{ $list->id }}">{{ $list->title }}</option>
+                                @endforeach
+                            </select>
+                        </div>
+                        {{-- <div class="mb-6">
                             <label for="message" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Select Customers</label>
                             <select required name="customer_id[]" multiple id="" class="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 dark:shadow-sm-light">
                                 @foreach($customers as $customer)
                                     <option value="{{ $customer->id }}">{{ $customer->customer_phone }}</option>
                                 @endforeach
                             </select>
-                        </div>
+                        </div> --}}
                         <div class="mb-6 text-center">
                             <button type="submit" class="bg-green-300 p-2 w-[100%] rounded hover:bg-green-400 shadow-lg">Save</button>
                         </div>

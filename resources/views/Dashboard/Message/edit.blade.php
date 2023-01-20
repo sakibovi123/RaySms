@@ -8,7 +8,7 @@
         <main class="w-full flex-grow p-6">
 
             <div class="create-button text-right">
-                <a href="{{ URL('/create-template') }}" class="p-2 bg-gray-900 rounded text-white">CREATE TEMPLATE</a>
+                <a href="{{ URL('/templates') }}" class="p-2 bg-gray-900 rounded text-white">RETURN BACK</a>
             </div>
             <div class="w-full mt-12">
                 <p class="text-xl pb-3 flex items-center">

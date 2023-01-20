@@ -6,6 +6,7 @@ use App\Imports\CustomerImport;
 use App\Models\Customer;
 use App\Models\DataList;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use Maatwebsite\Excel\Facades\Excel;
 
 class DataListController extends Controller
@@ -16,7 +17,7 @@ class DataListController extends Controller
 
     public function index()
     {
-        $lists = DataList::all()->sortBy("-created_at");
+        $lists = DataList::all()->sortByDesc("created_at");
         return view("Dashboard.List.lists", [
             "lists" => $lists
         ]);
@@ -31,9 +32,9 @@ class DataListController extends Controller
         return view("Dashboard.List.create_list");
     }
 
-    
+
     /**
-     * saving Datalist into 
+     * saving Datalist into
      */
     public function store(Request $request)
     {
@@ -44,30 +45,11 @@ class DataListController extends Controller
         $list->list_id = $this->generate_random_string();
         $list->title = $request->get("title");
 
-        // $list->save();
-        // saving customers first
-        // $customer_phones = Excel::import(new CustomerImport)->toCollection($request->file("excel_file"));
-
-        $customer_phones = (new CustomerImport)->toCollection($request->file("excel_file"));
-        // $customer_phones->toJson()
-        foreach ($customer_phones as $value) {
-            print_r($value);
-            die();
-            // foreach($value as $val){
-            //     echo $val;
-            //     die();
-            // }
-            
-            
-        }
-        // $list->customers()->save($customer_phone);
-
-        
-
+        $list->save();
         return back()->with("message", "Campaign Added");
     }
 
-    
+
     // generating random string
     public function generate_random_string($length = 11)
     {
@@ -82,34 +64,42 @@ class DataListController extends Controller
 
 
     // getting details and adding numbers
-    public function add_numbers_list_wise($list_id)
+    public function show($list_id)
     {
-        $customers_phone = Customer::where("id", $list_id)->get();
+        $list = DataList::where("list_id", $list_id)->first();
+        $customer = Customer::whereIn("data_list_id", $list)->get();
 
-        echo $customers_phone;
+        return view("Dashboard.List.list_wise", [
+            "list" => $list,
+            "customer" => $customer
+        ]);
     }
 
-    
+
+    // importing customers
+
     // editing template view
     public function edit($list_id)
     {
-        $list = DataList::where("list_id", "=", $list_id)->first();
+        $list = DataList::find($list_id);
 
-        return view("Dashboard.List.edit");
+        return view("Dashboard.List.edit", [
+            "list" => $list
+        ]);
     }
 
 
     // updating data
     public function update(Request $request, $list_id)
     {
-        $list = DataList::where("list_id", "=", $list_id)->first();
+        $list = DataList::find($list_id);
 
         if( !empty($list) )
         {
             $list->title = $request->get("title");
 
             $list->save();
-            return redirect()->with("message", "Data List Updated");
+            return redirect("/lists")->with("message", "Data List Updated");
         } else {
             die();
         }
@@ -119,17 +109,16 @@ class DataListController extends Controller
     // removing list by id one by one
     public function remove($list_id)
     {
-        $list = DataList::where("list_id", "=", $list_id)->first();
+        $list = DataList::find($list_id);
         $list->delete();
-        return redirect()->with("message", "Data List Deleted");
+        return back()->with("message", "Data List Deleted");
     }
 
 
     // delete all function
     public function delete_all()
     {
-        $list = DataList::all();
-        $list->delete();
-        return redirect()->with("message", "Data Lists Deleted"); 
+        DB::table("data_lists")->delete();
+        return back()->with("message", "Data Lists Deleted");
     }
 }
