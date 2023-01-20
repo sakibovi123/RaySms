@@ -11,6 +11,8 @@ class DataList extends Model
 
     protected $table = "data_lists";
 
+    protected $fillable = ["title", "list_id"];
+
     public function customer()
     {
         return $this->hasMany(Customer::class);

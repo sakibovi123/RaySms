@@ -28,6 +28,7 @@ Route::group(["middleware" => "auth"], function () {
     Route::get("/edit-template/{id}/", [\App\Http\Controllers\MessageContentController::class, 'editTemplate']);
     Route::put("/update-template/{id}/", [\App\Http\Controllers\MessageContentController::class, 'update']);
     Route::delete("/delete-template/{id}/", [\App\Http\Controllers\MessageContentController::class, 'destroy']);
+    Route::get("/remove-all", [\App\Http\Controllers\MessageContentController::class, 'remove_all'])->name("remove_all");
 
 
 // Sender numbers url
@@ -38,6 +39,7 @@ Route::group(["middleware" => "auth"], function () {
     Route::get("/edit-number/{id}/", [\App\Http\Controllers\SenderNumberController::class, 'edit']);
     Route::put("/update-number/{id}/", [\App\Http\Controllers\SenderNumberController::class, 'update']);
     Route::delete("/delete-number/{id}/", [\App\Http\Controllers\SenderNumberController::class, 'destroy']);
+    Route::get("/remove-sender-numbers", [\App\Http\Controllers\SenderNumberController::class, 'remove_all'])->name("remove_all");
 
 // Customers url
 
@@ -48,6 +50,7 @@ Route::group(["middleware" => "auth"], function () {
     Route::delete("/delete-customer/{id}/", [\App\Http\Controllers\CustomerController::class, 'destroy']);
     Route::get("/create-customer", [\App\Http\Controllers\CustomerController::class, "create"])->name("create-customer");
     Route::post("/save-customer", [\App\Http\Controllers\CustomerController::class, 'create_customer_manually'])->name("save-customer");
+    Route::get("/destroy_all", [\App\Http\Controllers\CustomerController::class, "destroy_all"])->name("destroy_all");
 
 
 // sendsms url
@@ -56,6 +59,7 @@ Route::group(["middleware" => "auth"], function () {
     Route::post("/send-message-to-customers", [\App\Http\Controllers\SendMessageController::class, 'send']);
     Route::get("/view-details/{id}", [\App\Http\Controllers\SendMessageController::class, 'showDetails']);
     Route::delete("/remove/{id}", [\App\Http\Controllers\SendMessageController::class, "remove"]);
+    Route::get("/remove-all", [\App\Http\Controllers\SendMessageController::class, "remove_all"])->name("remove_all");
 
     // campaigns route
     Route::get("/campaigns", [\App\Http\Controllers\CampaignController::class, "fetch_all_campaigns"])->name("all_campaigns");
@@ -86,7 +90,8 @@ Route::group(["middleware" => "auth"], function () {
     Route::get("/create-list", [\App\Http\Controllers\DataListController::class, "create"])->name("create-list");
     Route::post("/save-lists", [\App\Http\Controllers\DataListController::class, "store"])->name("store-lists");
     Route::get("/view/{list_id}", [\App\Http\Controllers\DataListController::class, "show"])->name("show");
-    Route::put("/edit-list/{list_id}", [\App\Http\Controllers\DataListController::class, "update"])->name("update-list");
+    Route::get("/edit-list/{list_id}", [\App\Http\Controllers\DataListController::class, "edit"])->name("edit-list");
+    Route::put("/update-list/{list_id}", [\App\Http\Controllers\DataListController::class, "update"])->name("update-list");
     Route::delete("/remove-list/{list_id}", [\App\Http\Controllers\DataListController::class, "remove"])->name("remove-list");
     Route::get("/remove-all-list", [\App\Http\Controllers\DataListController::class, "delete_all"])->name("delete-all-list");
 

@@ -8,11 +8,11 @@
         <main class="w-full flex-grow p-6">
 
             <div class=" flex items-center justify-between create-button">
-                <form action="{{ URL("/import-customers") }}" method="POST" enctype="multipart/form-data">
+                {{-- <form action="{{ URL("/import-customers") }}" method="POST" enctype="multipart/form-data">
                     @csrf
                     <input type="file" name="excel_file" class="p-2 bg-gray-900 rounded text-white" />
                     <button type="submit" class="p-2 bg-gray-900 rounded text-white">Import</button>
-                </form>
+                </form> --}}
 
                 <a href="{{ url('/add-customer') }}" class="p-2 bg-gray-900 rounded text-white hover:bg-gray-700">
                     ADD CUSTOMER
@@ -20,9 +20,11 @@
 
             </div>
             <div class="w-full mt-12">
-                <p class="text-xl pb-3 flex items-center">
-                    <i class="fas fa-list mr-3"></i> Customer Numbers
+                <p class="flex items-center justify-between text-lg pb-3 flex items-center">
+                    Campaign Name: {{ $list->title }}
+                    <a href="" class="bg-red-300 px-5 py-1 rounded"><i class="fas fa-trash"></i> DELETE ALL</a>
                 </p>
+                
                 @if(session()->has('message'))
                     <div class="bg-teal-400 border-t-4 border-teal-500 rounded-b text-teal-900 px-4 py-3 shadow-md" role="alert">
                         <div class="flex">

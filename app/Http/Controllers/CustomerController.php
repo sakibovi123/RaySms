@@ -6,6 +6,7 @@ use App\Imports\CustomerImport;
 use App\Models\Customer;
 use App\Models\DataList;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use Maatwebsite\Excel\Facades\Excel;
 
 
@@ -19,26 +20,15 @@ class CustomerController extends Controller
         ]);
     }
 
-    public function importCustomers(Request $request, $list_id) {
+    public function importCustomers() {
         // Excel::import(new UsersImport,request()->file('file'));
 
+        Excel::import(new CustomerImport, request()->file('excel_file'));
 
-        // Excel::import(new CustomerImport, request()->file('excel_file'));
-        $cus = new Customer();
 
-        $customers = (new CustomerImport)->toArray($request->file("excel_file"));
-        foreach($customers as $customer)
-        {
-            unset($customer["customer_phone"]);
-            echo $customer;
-            // $cus->customer_phone = $customer;
-            // $cus->save();
-            // dd($cus);   
-        }
-        
-
-        // return back();
+        return back();
     }
+
 
     public function create(){
         $lists = DataList::all()->sortBy("-created_at");
@@ -71,5 +61,13 @@ class CustomerController extends Controller
         $customer = Customer::find($id);
         $customer->delete();
         return redirect("/customers")->with("message", "Data deleted!");
+    }
+
+
+    // deleting all customers
+    public function destroy_all()
+    {
+        DB::table("customer")->delete();
+        return back()->with("message", "All Customers Deleted");
     }
 }

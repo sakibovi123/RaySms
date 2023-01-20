@@ -6,6 +6,7 @@ use App\Imports\CustomerImport;
 use App\Models\Customer;
 use App\Models\DataList;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use Maatwebsite\Excel\Facades\Excel;
 
 class DataListController extends Controller
@@ -80,23 +81,25 @@ class DataListController extends Controller
     // editing template view
     public function edit($list_id)
     {
-        $list = DataList::where("list_id", "=", $list_id)->first();
+        $list = DataList::find($list_id);
 
-        return view("Dashboard.List.edit");
+        return view("Dashboard.List.edit", [
+            "list" => $list
+        ]);
     }
 
 
     // updating data
     public function update(Request $request, $list_id)
     {
-        $list = DataList::where("list_id", "=", $list_id)->first();
+        $list = DataList::find($list_id);
 
         if( !empty($list) )
         {
             $list->title = $request->get("title");
 
             $list->save();
-            return redirect()->with("message", "Data List Updated");
+            return redirect("/lists")->with("message", "Data List Updated");
         } else {
             die();
         }
@@ -115,8 +118,7 @@ class DataListController extends Controller
     // delete all function
     public function delete_all()
     {
-        $list = DataList::all();
-        $list->delete();
-        return redirect()->with("message", "Data Lists Deleted"); 
+        DB::table("data_lists")->delete();
+        return back()->with("message", "Data Lists Deleted"); 
     }
 }
