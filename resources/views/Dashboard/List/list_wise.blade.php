@@ -24,7 +24,7 @@
                     Campaign Name: {{ $list->title }}
                     <a href="" class="bg-red-300 px-5 py-1 rounded"><i class="fas fa-trash"></i> DELETE ALL</a>
                 </p>
-                
+
                 @if(session()->has('message'))
                     <div class="bg-teal-400 border-t-4 border-teal-500 rounded-b text-teal-900 px-4 py-3 shadow-md" role="alert">
                         <div class="flex">
@@ -54,7 +54,7 @@
                                     <td class="w-1/3 text-left py-3 px-4">{{ $customer->customer_phone }}</td>
 
                                     <td class="text-left py-3 px-5 text-2xl" colspan="2">
-{{--                                        <a class="hover:text-blue-500" href="{{ url('/edit-template/'.$template->id) }}"><i class="fas fa-edit"></i></a>--}}
+                                        {{--                                        <a class="hover:text-blue-500" href="{{ url('/edit-template/'.$template->id) }}"><i class="fas fa-edit"></i></a>--}}
                                         <form action="{{ url('/delete-customer/'.$customer->id) }}" method="POST" enctype="multipart/form-data">
                                             @csrf
                                             @method("DELETE")
