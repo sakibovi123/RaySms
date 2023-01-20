@@ -51,22 +51,30 @@ class SendMessageController extends Controller
         $customers = Customer::where("data_list_id", "=", $list)->get();
         foreach($customers as $customer){
             $sendmessage->customer()->attach($customer->id);
-            try{
-                $client = new Client($twilio_sid, $twilio_token);
-                $client->messages->create(
-                    $customer->customer_phone,
-                    [
-                        "from" => $senderNumber->number,
-                        "body" => $sendmessage->messageContent->content,
-                    ]
-                );
-                $customer->is_active = 1;
-                $customer->save();
-                $arr[] = $customer->customer_phone;
-            } catch(Exception $e){
-                echo $e->getMessage();
-                exit();
+            if( $customer->is_active == 0 )
+            {
+                try{
+                    $client = new Client($twilio_sid, $twilio_token);
+                    $client->messages->create(
+                        $customer->customer_phone,
+                        [
+                            "from" => $senderNumber->number,
+                            "body" => $sendmessage->messageContent->content,
+                        ]
+                    );
+                    $customer->is_active = 1;
+                    $customer->save();
+                    $arr[] = $customer->customer_phone;
+                } catch(Exception $e){
+                    echo $e->getMessage();
+                    exit();
+                }
             }
+            else
+            {
+                return redirect("/messages");
+            }
+
         }
         return redirect("/messages")->with("numbers", implode(", ", $arr));
     }
@@ -78,7 +86,7 @@ class SendMessageController extends Controller
         ]);
     }
 
-    
+
     /**
      * Summary of send_sms_automatically
      * @param Request $request
@@ -99,6 +107,6 @@ class SendMessageController extends Controller
     {
         DB::table("send_messages")->delete();
         return back()->with("message", "Deleted Susccessfully!");
-    } 
+    }
 
 }

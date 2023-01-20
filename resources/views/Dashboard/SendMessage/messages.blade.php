@@ -51,7 +51,7 @@
                 @endif
                 <div class="bg-white overflow-auto">
                     @if(session()->has("numbers"))
-                        {{ session()->get("numbers") }}
+                        Messages sent to : {{ session()->get("numbers") }}
                     @endif
 
                     @if($sent)
