@@ -172,7 +172,7 @@
                 <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Maiores, sunt.</p>
             </div>
             <div class="mt-3 flex justify-end space-x-3">
-                <button class="px-3 py-1 rounded hover:bg-red-300 hover:bg-opacity-50 hover:text-red-900">Cancel</button>
+                <button class="px-3 py-1 rounded hover:bg-red-300 hover:bg-opacity-50 hover:text-red-900" id="no-modal">Cancel</button>
                 <button class="px-3 py-1 bg-red-800 text-gray-200 hover:bg-red-600 rounded">Delete</button>
             </div>
         </div>
@@ -224,6 +224,7 @@ panel.classList.add("invisible", "opacity-0")
             const overlay = document.querySelector('#overlay')
             const delBtn = document.querySelector('#delete-btn')
             const closeBtn = document.querySelector('#close-modal')
+            const noBtn = document.querySelector('#no-modal')
 
             const toggleModal = () => {
                 overlay.classList.toggle('hidden')
@@ -233,6 +234,7 @@ panel.classList.add("invisible", "opacity-0")
             delBtn.addEventListener('click', toggleModal)
 
             closeBtn.addEventListener('click', toggleModal)
+            noBtn.addEventListener('click', toggleModal)
         })
 
     </script>
