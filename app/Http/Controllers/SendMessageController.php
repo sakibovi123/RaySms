@@ -15,7 +15,8 @@ use Twilio\Rest\Client;
 
 class SendMessageController extends Controller
 {
-    public function template() {
+    public function template ()
+    {
         $sent = SendMessage::paginate(15);
         return view("Dashboard.SendMessage.messages", [
             "sent" => $sent
@@ -23,7 +24,8 @@ class SendMessageController extends Controller
     }
 
 
-    public function create() {
+    public function create ()
+    {
         $templates = MessageContentModel::all();
         $numbers = SendNumberModel::all();
         $customers = Customer::all();
@@ -36,7 +38,20 @@ class SendMessageController extends Controller
         ]);
     }
 
-    public function send(Request $request) {
+    // getting all numbers by datalist
+    public function get_numbers($list_id): \Illuminate\Http\JsonResponse
+    {
+        $customers = Customer::where("data_list_id", "=", $list_id)
+            ->where("is_active", "=", 0)
+            ->get();
+        return response()
+            ->json($customers);
+    }
+
+    // sending messages to multiples users
+
+    public function send (Request $request)
+    {
         $twilio_sid = getenv("TWILIO_SID");
         $twilio_token = getenv("TWILIO_TOKEN");
 
@@ -48,12 +63,12 @@ class SendMessageController extends Controller
         $sendmessage->save();
         $list = $request->get("list");
 
-        $customers = Customer::where("data_list_id", "=", $list)->get();
-        foreach($customers as $customer){
+        // $customers = Customer::where("data_list_id", "=", $list)->get();
+        $customers = Customer::whereIn("id", $request->input("customer_id"))->get();
+        foreach ($customers as $customer) {
             $sendmessage->customer()->attach($customer->id);
-            if( $customer->is_active == 0 )
-            {
-                try{
+            if ($customer->is_active == 0) {
+                try {
                     $client = new Client($twilio_sid, $twilio_token);
                     $client->messages->create(
                         $customer->customer_phone,
@@ -65,13 +80,11 @@ class SendMessageController extends Controller
                     $customer->is_active = 1;
                     $customer->save();
                     $arr[] = $customer->customer_phone;
-                } catch(Exception $e){
-                    echo $e->getMessage();
+                } catch (Exception $e) {
+                    echo $e->getMessage() . "remove this number and continue again!";
                     exit();
                 }
-            }
-            else
-            {
+            } else {
                 return redirect("/messages");
             }
 
@@ -79,7 +92,8 @@ class SendMessageController extends Controller
         return redirect("/messages")->with("numbers", implode(", ", $arr));
     }
 
-    public function showDetails($id) {
+    public function showDetails ($id)
+    {
         $sends = SendMessage::find($id)->customer;
         return view("Dashboard.SendMessage.details", [
             "sends" => $sends
@@ -92,7 +106,7 @@ class SendMessageController extends Controller
      * @param Request $request
      * @return \Illuminate\Http\Response
      */
-    public function remove($id)
+    public function remove ($id)
     {
         $bulk_id = SendMessage::find($id);
         $bulk_id->delete();
@@ -103,7 +117,7 @@ class SendMessageController extends Controller
     /**
      * removing all of the data from send_messages db.
      */
-    public function remove_all()
+    public function remove_all ()
     {
         DB::table("send_messages")->delete();
         return back()->with("message", "Deleted Susccessfully!");

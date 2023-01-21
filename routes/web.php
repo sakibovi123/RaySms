@@ -7,7 +7,7 @@ Route::group(["middleware" => "guest"], function(){
     Route::get("/register", [\App\Http\Controllers\Auth\AuthController::class, 'register']);
     Route::post("/register", [\App\Http\Controllers\Auth\AuthController::class, 'createUser']);
 
-    Route::get("/login", [\App\Http\Controllers\Auth\AuthController::class, 'loginIndex'])->name("login");
+    Route::get("/login-user", [\App\Http\Controllers\Auth\AuthController::class, 'loginIndex'])->name("login-user");
     Route::post("/login", [\App\Http\Controllers\Auth\AuthController::class, 'login'])->name("login");
 
     Route::get("/logout", [\App\Http\Controllers\Auth\AuthController::class, "logout"])->name("logout");
@@ -28,7 +28,7 @@ Route::group(["middleware" => "auth"], function () {
     Route::get("/edit-template/{id}/", [\App\Http\Controllers\MessageContentController::class, 'editTemplate']);
     Route::put("/update-template/{id}/", [\App\Http\Controllers\MessageContentController::class, 'update']);
     Route::delete("/delete-template/{id}/", [\App\Http\Controllers\MessageContentController::class, 'destroy']);
-    Route::get("/remove-all", [\App\Http\Controllers\MessageContentController::class, 'remove_all'])->name("remove_all");
+    Route::get("/remove-all", [\App\Http\Controllers\MessageContentController::class, 'remove_all'])->name("remove-templates");
 
 
 // Sender numbers url
@@ -39,7 +39,8 @@ Route::group(["middleware" => "auth"], function () {
     Route::get("/edit-number/{id}/", [\App\Http\Controllers\SenderNumberController::class, 'edit']);
     Route::put("/update-number/{id}/", [\App\Http\Controllers\SenderNumberController::class, 'update']);
     Route::delete("/delete-number/{id}/", [\App\Http\Controllers\SenderNumberController::class, 'destroy']);
-    Route::get("/remove-sender-numbers", [\App\Http\Controllers\SenderNumberController::class, 'remove_all'])->name("remove_all");
+    Route::get("/remove-sender-numbers", [\App\Http\Controllers\SenderNumberController::class, 'remove_all'])->name("remove-sender-numbers");
+
 
 // Customers url
 
@@ -60,11 +61,12 @@ Route::group(["middleware" => "auth"], function () {
     Route::get("/view-details/{id}", [\App\Http\Controllers\SendMessageController::class, 'showDetails']);
     Route::delete("/remove/{id}", [\App\Http\Controllers\SendMessageController::class, "remove"]);
     Route::get("/remove-all", [\App\Http\Controllers\SendMessageController::class, "remove_all"])->name("remove_all");
+    Route::get("/get-customer-numbers/{list_id}", [\App\Http\Controllers\SendMessageController::class, "get_numbers"])->name("get_all_numbers");
 
     // campaigns route
     Route::get("/campaigns", [\App\Http\Controllers\CampaignController::class, "fetch_all_campaigns"])->name("all_campaigns");
     Route::get("/create-campaign", [\App\Http\Controllers\CampaignController::class, 'create'])->name("create-campaign");
-    Route::post("/save-campaign", [\App\Http\Controllers\CampaignController::class, "store"])->name("save-content");
+    Route::post("/save-campaign", [\App\Http\Controllers\CampaignController::class, "store"])->name("save-campaign");
     Route::get("/campaign-details/{camp_id}", [\App\Http\Controllers\CampaignController::class, "fetch_campaign_wise_customers"]);
     Route::put("/change-status/{id}", [\App\Http\Controllers\CampaignController::class, "start_or_stop"])->name("change-status");
 

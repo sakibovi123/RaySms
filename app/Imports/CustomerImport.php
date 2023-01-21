@@ -17,15 +17,6 @@ class CustomerImport implements ToModel, WithHeadingRow
      */
 
 
-    // private $listId;
-
-    // public function __construct($listId)
-    // {
-    //     $this->listId = $listId;
-    // }
-
-
-
     public function model(array $row)
     {
 
