@@ -7,7 +7,7 @@ Route::group(["middleware" => "guest"], function(){
     Route::get("/register", [\App\Http\Controllers\Auth\AuthController::class, 'register']);
     Route::post("/register", [\App\Http\Controllers\Auth\AuthController::class, 'createUser']);
 
-    Route::get("/login-user", [\App\Http\Controllers\Auth\AuthController::class, 'loginIndex'])->name("login-user");
+    Route::get("/login", [\App\Http\Controllers\Auth\AuthController::class, 'loginIndex'])->name("login");
     Route::post("/login", [\App\Http\Controllers\Auth\AuthController::class, 'login'])->name("login");
 
     Route::get("/logout", [\App\Http\Controllers\Auth\AuthController::class, "logout"])->name("logout");
