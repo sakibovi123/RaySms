@@ -82,7 +82,7 @@ Route::group(["middleware" => "auth"], function () {
     Route::delete("delete-content/{id}/", [\App\Http\Controllers\ContentController::class, "remove"])->name("remove-content");
 
     // jobs routes
-    Route::get("/jobs", [\App\Http\Controllers\JobController::class, "fetching_all_jobs"])->name("job");
+    // Route::get("/jobs", [\App\Http\Controllers\JobController::class, "fetching_all_jobs"])->name("job");
     // logs routes
     Route::get("/logs", [\App\Http\Controllers\JobController::class, "index"])->name("jobs");
 

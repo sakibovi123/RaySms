@@ -15,10 +15,18 @@
             Dashboard
         </a>
         </p>
+
+        <p class="{{ 'all_campaigns' == request()->path() ? 'active-nav-link' : '' }}">
+            <a href="{{ route('all_campaigns') }}" class="flex items-center text-white opacity-75 hover:opacity-100 py-4 pl-6 nav-item">
+                <i class="fas fa-compass mr-3"></i>
+                Campaigns
+            </a>
+        </p>
+
        <p class="{{ 'templates' == request()->path() ? 'active-nav-link' : '' }}">
        <a href="{{ URL('/templates') }}" class="flex items-center text-white opacity-75 hover:opacity-100 py-4 pl-6 nav-item">
             <i class="fas fa-sticky-note mr-3"></i>
-            SMS TEMPLATES
+            MANAGE TEMPLATES
         </a>
        </p>
         <p class="{{ 'sender-numbers' == request()->path() ? 'active-nav-link' : '' }}">
@@ -53,12 +61,7 @@
             Numbers
         </a>
 </p>
-        <p class="{{ 'all_campaigns' == request()->path() ? 'active-nav-link' : '' }}">
-            <a href="{{ route('all_campaigns') }}" class="flex items-center text-white opacity-75 hover:opacity-100 py-4 pl-6 nav-item">
-                <i class="fas fa-compass mr-3"></i>
-                Campaigns
-            </a>
-        </p>
+
 {{--        <p class="{{ 'contents' == request()->path() ? 'active-nav-link' : '' }}">--}}
 {{--            <a href="{{ route('all_campaigns') }}" class="flex items-center text-white opacity-75 hover:opacity-100 py-4 pl-6 nav-item">--}}
 {{--                <i class="fa-solid fa-circle-info fa-beat-fade">contents</i>--}}
