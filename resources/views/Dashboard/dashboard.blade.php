@@ -29,8 +29,9 @@
                         </div>
 
                         <div class="w-2/5 flex justify-end">
-                            <div class="icon-top rounded-full p-3">
-                            <i class="fas fa-paper-plane text-2xl text-white"></i>
+                            <div class=" rounded-full p-3">
+                            <!-- <i class="fas fa-paper-plane text-2xl text-white"></i> -->
+                            <img src="https://i.ibb.co/T0T4fJc/send.png" alt="">
                             </div>
                         </div>
 
@@ -48,10 +49,10 @@
                         </div>
 
                         <div class="w-2/5 flex justify-end">
-                            <div class="icon-top rounded-full px-4 py-2">
+                            <div class=" rounded-full px-4 py-2">
                             <!-- <i class="fa-sharp fas fa-route text-white text-3xl"></i> -->
-                            <i class="fa-sharp fas fa-exclamation text-white text-3xl "></i>
-                            
+                            <!-- <i class="fa-sharp fas fa-exclamation text-white text-3xl "></i> -->
+                            <img src="https://i.ibb.co/vwGBMPD/failed.png" alt="">
                             
                             </div>
                         </div>
@@ -68,8 +69,9 @@
                         </div>
 
                         <div class="w-2/5 flex justify-end">
-                            <div class="icon-top rounded-full px-4 py-2">
-                            <i class="fas fa-file-invoice-dollar text-white text-3xl"></i>
+                            <div class=" rounded-full px-4 py-2">
+                            <!-- <i class="fas fa-file-invoice-dollar text-white text-3xl"></i> -->
+                            <img src="https://i.ibb.co/PMttNw1/monthly-cost.png" alt="">
                             </div>
                         </div>
 
@@ -87,8 +89,9 @@
                         </div>
 
                         <div class="w-2/5 flex justify-end">
-                            <div class="icon-top rounded-full p-2">
-                            <i class="fa-sharp fas fa-id-card text-white text-3xl"></i>
+                            <div class=" rounded-full p-2">
+                            <!-- <i class="fa-sharp fas fa-id-card text-white text-3xl"></i> -->
+                            <img src="https://i.ibb.co/cFf2jRs/yearly-cost.png" alt="">
                             </div>
                         </div>
 
@@ -274,11 +277,13 @@
     var myChart = new Chart(chartOne, {
         type: 'bar',
         data: {
-            labels: ['January', 'February', 'March', 'April', 'May', 'June'],
+            labels: ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August'],
             datasets: [{
                 label: '# First DataSet',
-                data: [2, 1, 8, 5, 12, 3],
+                data: [2, 1, 8, 5, 12, 3, 6, 10],
                 backgroundColor: [
+                    'rgba(75, 192, 192, 0.2)',
+                    'rgba(75, 192, 192, 0.2)',
                     'rgba(75, 192, 192, 0.2)',
                     'rgba(75, 192, 192, 0.2)',
                     'rgba(75, 192, 192, 0.2)',
@@ -287,6 +292,8 @@
                     'rgba(75, 192, 192, 0.2)'
                 ],
                 borderColor: [
+                    'rgba(75, 192, 192, 1)',
+                    'rgba(75, 192, 192, 1)',
                     'rgba(75, 192, 192, 1)',
                     'rgba(75, 192, 192, 1)',
                     'rgba(75, 192, 192, 1)',
