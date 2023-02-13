@@ -13,13 +13,11 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('customer', function (Blueprint $table) {
+        Schema::create('data_lists', function (Blueprint $table) {
             $table->id();
             $table->timestamps();
-            $table->string("customer_phone", 255);
-            $table->string("pay_out", 255)->nullable();
-            $table->boolean("is_active")->nullable();
-            $table->foreignIdFor(\App\Models\DataList::class)->nullable();
+            $table->string("list_id", 11);
+            $table->string("title", 255);
         });
     }
 
@@ -30,6 +28,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('customer');
+        Schema::dropIfExists('data_lists');
     }
 };

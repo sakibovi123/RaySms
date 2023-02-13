@@ -1,6 +1,7 @@
 @include("Dashboard.base")
 
 @include("Dashboard.sidebar")
+
 <div class="w-full flex flex-col h-screen overflow-y-hidden">
     <!-- Desktop Header -->
     @include("Dashboard.header")
@@ -38,6 +39,20 @@
                             </select>
                         </div>
                         <div class="mb-6">
+                            <label for="message" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Select Campaign</label>
+                            <select required name="list" id="data-list" class="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 dark:shadow-sm-light">
+                                @foreach($lists as $list)
+                                    <option value="{{ $list->id }}">{{ $list->title }}</option>
+                                @endforeach
+                            </select>
+                        </div>
+                        <div class="mb-6">
+                            <label for="message" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Select Numbers</label>
+                            <select required multiple name="customer_id[]" id="customer_numbers" class="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 dark:shadow-sm-light">
+
+                            </select>
+                        </div>
+                        {{-- <div class="mb-6">
                             <label for="message" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Select Customers</label>
                             <select required name="customer_id[]" multiple id="" class="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 dark:shadow-sm-light">
                                 @foreach($customers as $customer)
@@ -46,7 +61,7 @@
 {{--                                    @endif--}}
                                 @endforeach
                             </select>
-                        </div>
+                        </div> --}}
                         <div class="mb-6 text-center">
                             <button type="submit" class="bg-green-300 p-2 w-[100%] rounded hover:bg-green-400 shadow-lg">Save</button>
                         </div>
@@ -66,6 +81,31 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/js/all.min.js" integrity="sha256-KzZiKy0DWYsnwMF+X1DvQngQ2/FxF7MF3Ff72XcpuPs=" crossorigin="anonymous"></script>
 <!-- ChartJS -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.3/Chart.min.js" integrity="sha256-R4pqcOYV8lt7snxMQO/HSbVCFRPMdrhAFMH+vr9giYI=" crossorigin="anonymous"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
+<script type="text/javascript">
+
+    $(document).ready(function () {
+        $("#data-list").on('change', function (){
+            var listId = this.value;
+            $('#customer_numbers').html('');
+            $.ajax({
+                url: "{{ url('/get-customer-numbers/') }}/"+listId,
+                type: 'get',
+                success: function (res){
+                    // $('#customer_numbers').html('<option value="">Select Phone Numbers</option>');
+                    $.each(res, function (key, value){
+                        $('#customer_numbers').append('<option value="' + value
+                            .id + '">' + value.customer_phone + '</option>');
+                    });
+
+                }
+            })
+        })
+
+    })
+</script>
+
+
 
 <script>
     var chartOne = document.getElementById('chartOne');

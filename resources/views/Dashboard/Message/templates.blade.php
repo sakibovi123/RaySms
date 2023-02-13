@@ -1,4 +1,3 @@
-@section('title') {{'SMS Templates'}} @endsection
 @include("Dashboard.base")
 
 @include("Dashboard.sidebar")
@@ -9,65 +8,36 @@
         <main class="w-full flex-grow p-6">
 
             <div class="create-button text-right">
-                <a href="{{ URL('/create-template') }}" class="p-2 bg-sidebar rounded text-white">CREATE TEMPLATE</a>
+                <a href="{{ URL('/create-template') }}" class="p-2 bg-gray-900 rounded text-white">CREATE TEMPLATE</a>
             </div>
-
-            <div class="lg:flex  justify-between">
-            <div>
-<form class="px-4 mt-5 space-y-6" action="" method="GET">
-    <div class="lg:flex space-x-4">
-        <div class="">
-            <label for="">Filter by Date</label>
-            <input type="date" name="date" value="{{date('Y-m-d')}}" class="border border-gray-400 block py-2 px-4 w-full rounded focus:outline-none " />
-        </div>
-        
-        <div class="">
-            <label for="">Filter by Status</label>
-            <select name="status" id="form-select" class="border border-gray-400 block py-2 px-4 w-full rounded focus:outline-none">
-                <option value="">Select Status</option>
-                <option value="in Progress">In Progress</option>
-                <option value="completed">Completed</option>
-                <option value="pending">Pending</option>
-                <option value="cancelled">Cancelled</option>
-                <option value="out-for-delivery">Out for delivery</option>
-            </select>
-        </div>
-        <div class="mt-5">
-           
-            <button type="submit" class="uppercase font-semibold tracking-wider w-full bg-sidebar text-white p-3 rounded">Filter</button>
-        </div>
-        
-    </div>
-</form>
-</div>
-<div>
-<form action="" class="w-full max-w-md mt-10">
-    <div class="flex space-x-2">
-                        <div class="relative lg:flex items-center text-gray-400 focus-within:text-gray-600">
-                            <div class="w-5 h-5 absolute ml-3 pointer-events-none">
-                            <svg viewBox="0 0 24 24" preserveAspectRatio="xMidYMid meet" focusable="false" class="style-scope yt-icon " style="pointer-events: none; display: block; width: 100%; height: 100%;"><g class="style-scope yt-icon"><path d="M20.87,20.17l-5.59-5.59C16.35,13.35,17,11.75,17,10c0-3.87-3.13-7-7-7s-7,3.13-7,7s3.13,7,7,7c1.75,0,3.35-0.65,4.58-1.71 l5.59,5.59L20.87,20.17z M10,16c-3.31,0-6-2.69-6-6s2.69-6,6-6s6,2.69,6,6S13.31,16,10,16z" class="style-scope yt-icon text-gray-500"></path></g></svg>
-                            </div>
-                        
-                        <input
-                        type="text"
-                         name="search"
-                         placeholder="Search talk"
-                         autocomplete="off"
-                         aria-label="Search talk"
-                         class="w-full pr-3 pl-10 py-2 font-semibold placeholder-gray-500 text-black rounded border-none ring-2 ring-gray-300 focus:ring-gray-500 focus:ring-2"
-                         >
-                        </div>
-                        <div>
-                        <button type="submit" class="uppercase font-semibold tracking-wider w-full bg-sidebar text-white p-2 rounded">Search</button>
-                        </div>
-                        </div>
-                    </form>
-                    </div>
-                    </div>
             <div class="w-full mt-12">
-                <p class="text-xl pb-3 flex items-center">
-                    <i class="fas fa-list mr-3"></i> Latest Reports
-                </p>
+                <div class="flex items-center justify-between text-xl pb-3 flex items-center">
+                    <h3>LATEST CONTENTS</h3>
+                    <button class="px-6 py-1 bg-red-600 text-gray-100 rounded shadow" id="delete-btn">
+                        REMOVE ALL
+                    </button>
+                </div>
+                {{-- modal start --}}
+                <div class="bg-black bg-opacity-50 absolute inset-0 hidden justify-center items-center" id="overlay">
+                    <div class="bg-gray-200 max-w-sm py-2 px-3 rounded shadow-xl text-gray-800">
+                        <div class="flex justify-between items-center">
+                            <h4 class="text-lg font-bold">Confirm Delete?</h4>
+                            <svg class="h-6 w-6 cursor-pointer p-1 hover:bg-gray-300 rounded-full" id="close-modal" fill="currentColor" viewBox="0 0 20 20">
+                                <path fill-rule="evenodd"
+                                    d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z"
+                                    clip-rule="evenodd"></path>
+                            </svg>
+                        </div>
+                        <div class="mt-2 text-sm">
+                            <p>Are you sure you want to delete all of the data?</p>
+                        </div>
+                        <div class="mt-3 flex justify-end space-x-3">
+                            <button class="px-3 py-1 rounded hover:bg-red-300 hover:bg-opacity-50 hover:text-red-900">No</button>
+                            <a href="{{ url('/remove-all') }}" class="px-3 py-1 bg-blue-800 text-gray-200 hover:bg-red-600 rounded">Yes</a>
+                        </div>
+                    </div>
+                </div>
+                {{-- modal End --}}
                 @if(session()->has('message'))
                 <div class="bg-teal-400 border-t-4 border-teal-500 rounded-b text-teal-900 px-4 py-3 shadow-md" role="alert">
                     <div class="flex">
@@ -82,12 +52,12 @@
                 <div class="bg-white overflow-auto">
                     @if($templates)
                     <table class="min-w-full bg-white">
-                        <thead class="bg-sidebar text-white">
+                        <thead class="bg-gray-800 text-white">
                         <tr>
-                            <th class="w-1/3 text-left py-3 px-4 uppercase font-semibold text-sm">Title</th>
-                            <th class="w-1/3 text-left py-3 px-4 uppercase font-semibold text-sm">Content</th>
+                            <th class="w-1/3 text-left py-3 px-4 uppercase font-semibold text-sm text-center">Title</th>
+                            <th class="w-1/3 text-left py-3 px-4 uppercase font-semibold text-sm text-center">Content</th>
 
-                            <th class="text-left py-3 px-4 uppercase font-semibold text-sm">Actions</th>
+                            <th class="text-left py-3 px-4 uppercase font-semibold text-sm text-center">Actions</th>
                         </tr>
                         </thead>
                         <tbody class="text-gray-700">
@@ -96,13 +66,16 @@
                         <tr>
                             <td class="w-1/3 text-left py-3 px-4">{{ $template->title }}</td>
                             <td class="w-1/3 text-left py-3 px-4">{{ $template->content }}</td>
-                            <td class="lg:flex text-left py-3 px-5 text-2xl" colspan="2">
-                                <a class="hover:text-green-300" href="{{ url('/edit-template/'.$template->id) }}"><i class="fas fa-edit lg:mr-3"></i></a>
-                                <form action="{{ url('/delete-template/'.$template->id) }}" method="POST">
-                                    @csrf
-                                    @method("DELETE")
-                                    <button class="hover:text-red-300" type="submit"><i class="fas fa-trash"></i></button>
-                                </form>
+                            <td class="text-left py-3 px-5 text-2xl" colspan="2">
+                                <div class="flex items-center justify-center">
+                                    <a class="hover:text-blue-500" href="{{ url('/edit-template/'.$template->id) }}"><i class="fas fa-edit"></i></a>
+                                    <form action="{{ url('/delete-template/'.$template->id) }}" method="POST">
+                                        @csrf
+                                        @method("DELETE")
+                                        <button class="hover:text-blue-500" type="submit"><i class="fas fa-trash"></i></button>
+                                    </form>
+                                </div>
+                                
                             </td>
 
                         </tr>
@@ -126,7 +99,19 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/js/all.min.js" integrity="sha256-KzZiKy0DWYsnwMF+X1DvQngQ2/FxF7MF3Ff72XcpuPs=" crossorigin="anonymous"></script>
 <!-- ChartJS -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.3/Chart.min.js" integrity="sha256-R4pqcOYV8lt7snxMQO/HSbVCFRPMdrhAFMH+vr9giYI=" crossorigin="anonymous"></script>
-
+    <script>
+        window.addEventListener('DOMContentLoaded', () =>{
+            const overlay = document.querySelector('#overlay')
+            const delBtn = document.querySelector('#delete-btn')
+            const closeBtn = document.querySelector('#close-modal')
+            const toggleModal = () => {
+                overlay.classList.toggle('hidden')
+                overlay.classList.toggle('flex')
+            }
+            delBtn.addEventListener('click', toggleModal)
+            closeBtn.addEventListener('click', toggleModal)
+        })
+    </script>
 <script>
     var chartOne = document.getElementById('chartOne');
     var myChart = new Chart(chartOne, {
@@ -165,7 +150,6 @@
             }
         }
     });
-
     var chartTwo = document.getElementById('chartTwo');
     var myLineChart = new Chart(chartTwo, {
         type: 'line',

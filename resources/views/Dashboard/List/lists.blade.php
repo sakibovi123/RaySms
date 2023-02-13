@@ -7,21 +7,15 @@
     <div class="w-full overflow-x-hidden border-t flex flex-col">
         <main class="w-full flex-grow p-6">
 
-            <div class=" flex items-center justify-between create-button">
-                <form action="{{ URL("/import-customers") }}" method="POST" enctype="multipart/form-data">
-                    @csrf
-                    <input type="file" name="excel_file" class="p-2 bg-gray-900 rounded text-white" />
-                    <button type="submit" class="p-2 bg-gray-900 rounded text-white">Import</button>
-                </form>
-
-                <a href="{{ url('/add-customer') }}" class="p-2 bg-gray-900 rounded text-white hover:bg-gray-700">
-                    ADD CUSTOMER
-                </a>
+            <div class="create-button text-right">
+                <div class="create-button text-right py-3">
+                    <a class="p-2 bg-gray-900 rounded text-white" href="{{ url('/create-list') }}">Create List</a>
+                </div>
 
             </div>
             <div class="w-full mt-12">
                 <div class="flex items-center justify-between text-xl pb-3 flex items-center">
-                    <h3>CUSTOMERS</h3>
+                    <h3>LATEST LISTS</h3>
                     <button class="px-6 py-1 bg-red-600 text-gray-100 rounded shadow" id="delete-btn">
                         REMOVE ALL
                     </button>
@@ -33,56 +27,63 @@
                             <h4 class="text-lg font-bold">Confirm Delete?</h4>
                             <svg class="h-6 w-6 cursor-pointer p-1 hover:bg-gray-300 rounded-full" id="close-modal" fill="currentColor" viewBox="0 0 20 20">
                                 <path fill-rule="evenodd"
-                                    d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z"
-                                    clip-rule="evenodd"></path>
+                                      d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z"
+                                      clip-rule="evenodd"></path>
                             </svg>
                         </div>
                         <div class="mt-2 text-sm">
-                            <p>Are you sure you want to delete all the data?</p>
+                            <p>Are you sure you want to delete all of the data?</p>
                         </div>
                         <div class="mt-3 flex justify-end space-x-3">
                             <button class="px-3 py-1 rounded hover:bg-red-300 hover:bg-opacity-50 hover:text-red-900">No</button>
-                            <a href="{{ route('destroy_all') }}" class="px-3 py-1 bg-blue-800 text-gray-200 hover:bg-red-600 rounded">Yes</a>
+                            <a href="{{ url('/remove-all-list') }}" class="px-3 py-1 bg-blue-800 text-gray-200 hover:bg-red-600 rounded">Yes</a>
                         </div>
                     </div>
                 </div>
                 {{-- modal End --}}
                 @if(session()->has('message'))
-                    <div class="bg-red-300 border-t-4 border-teal-500 rounded-b text-teal-900 px-4 py-3 shadow-md" role="alert">
+                    <div class="bg-red-400 border-t-4 border-teal-500 rounded-b text-teal-900 px-4 py-3 shadow-md" role="alert">
                         <div class="flex">
                             <div class="py-1"><svg class="fill-current h-6 w-6 text-teal-500 mr-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"><path d="M2.93 17.07A10 10 0 1 1 17.07 2.93 10 10 0 0 1 2.93 17.07zm12.73-1.41A8 8 0 1 0 4.34 4.34a8 8 0 0 0 11.32 11.32zM9 11V9h2v6H9v-4zm0-6h2v2H9V5z"/></svg></div>
-                            <div class="">
+                            <div>
                                 <p class="font-bold"></p>
-                                <p class="text-lg">{{ session()->get('message') }}</p>
+                                <p class="text-sm">{{ session()->get('message') }}</p>
                             </div>
                         </div>
                     </div>
                 @endif
                 <div class="bg-white overflow-auto">
-                    @if($customers)
+                    @if($lists)
                         <table class="min-w-full bg-white">
                             <thead class="bg-gray-800 text-white">
                             <tr>
-                                <th class="w-1/3 text-left py-3 px-4 uppercase font-semibold text-sm">Customer Numbers</th>
+                                <th class="w-1/3 text-left py-3 px-4 uppercase font-semibold text-sm">EXCEL ID</th>
+                                <th class="w-1/3 text-left py-3 px-4 uppercase font-semibold text-sm">ADDED DATE</th>
                                 <th class="w-1/3 text-left py-3 px-4 uppercase font-semibold text-sm">LIST ID</th>
+                                <th class="w-1/3 text-left py-3 px-4 uppercase font-semibold text-sm">NAME</th>
 
                                 <th class="text-left py-3 px-4 uppercase font-semibold text-sm">Actions</th>
                             </tr>
                             </thead>
                             <tbody class="text-gray-700">
 
-                            @foreach($customers as $customer)
+                            @foreach($lists as $l)
                                 <tr>
-                                    <td class="w-1/3 text-left py-3 px-4">{{ $customer->customer_phone }}</td>
-                                    <td class="w-1/3 text-left py-3 px-4">{{ $customer->data_list_id }}</td>
-
+                                    <td class="w-1/3 text-left py-3 px-4"><a href="{{ url('/view/'.$l->list_id) }}">{{ $l->id }}</a></td>
+                                    <td class="w-1/3 text-left py-3 px-4"><a href="{{ url('/view/'.$l->list_id) }}">{{ $l->created_at }}</a></td>
+                                    <td class="w-1/3 text-left py-3 px-4"><a href="">{{ $l->list_id }}</a></td>
+                                    <td class="w-1/3 text-left py-3 px-4"><a href="">{{ $l->title }}</a></td>
                                     <td class="text-left py-3 px-5 text-2xl" colspan="2">
-{{--                                        <a class="hover:text-blue-500" href="{{ url('/edit-template/'.$template->id) }}"><i class="fas fa-edit"></i></a>--}}
-                                        <form action="{{ url('/delete-customer/'.$customer->id) }}" method="POST" enctype="multipart/form-data">
-                                            @csrf
-                                            @method("DELETE")
-                                            <button class="hover:text-blue-500" type="submit"><i class="fas fa-trash"></i></button>
-                                        </form>
+                                        <div class="flex items-center justify-center">
+                                            <a class="hover:text-blue-500" href="{{ url('/edit-list/'.$l->id) }}"><i class="fas fa-edit"></i></a>
+                                            <form action="{{ url('/remove-list/'.$l->id) }}" method="POST">
+                                                @csrf
+                                                @method("DELETE")
+                                                <button class="hover:text-blue-500" type="submit"><i class="fas fa-trash"></i></button>
+                                            </form>
+                                        </div>
+
+
                                     </td>
 
                                 </tr>
@@ -157,6 +158,7 @@
             }
         }
     });
+
     var chartTwo = document.getElementById('chartTwo');
     var myLineChart = new Chart(chartTwo, {
         type: 'line',

@@ -23,3 +23,5 @@ Route::post("/post-number", [\App\Http\Controllers\NumberController::class, 'sen
 
 // generating automatic message
 Route::post("/auto-message", [\App\Http\Controllers\SendMessageController::class, "send_sms_automatically"]);
+
+

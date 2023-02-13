@@ -2,17 +2,24 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\FailedJobs;
+use App\Models\Jobs;
 use Illuminate\Http\Request;
 
 class JobController extends Controller
 {
+
+
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
+        $jobs = Jobs::all();
+        $failed_jobs= FailedJobs::all();
         return view("Dashboard.Logs.logs", [
-
+            "jobs" => $jobs,
+            "failed_jobs" => $failed_jobs
         ]);
     }
 
@@ -71,14 +78,16 @@ class JobController extends Controller
         //
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
+
     public function destroy($id)
     {
-        //
+        $job = Jobs::find($id);
+        $job->delete();
+
+        $failed = FailedJobs::find($id);
+        $failed->delete();
+
+        return back()
+            ->with("message", "Deleted!");
     }
 }
