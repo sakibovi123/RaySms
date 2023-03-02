@@ -74,6 +74,13 @@
                 Logs
             </a>
             </p>
+        <p class="{{ 'roles' == request()->path() ? 'active-nav-link' : '' }}">
+            <a href="{{ url("/roles") }}" class="flex items-center text-white opacity-75 hover:opacity-100 py-4 pl-6 nav-item">
+                <!-- <i class="fas fa-sign-out "></i> -->
+                <i class="fa-sharp fas fa-download mr-3"></i>
+                ROLES
+            </a>
+        </p>
         <p class="{{ 'logout' == request()->path() ? 'active-nav-link' : '' }}">
         <a href="{{ url("/logout") }}" class="flex items-center text-white opacity-75 hover:opacity-100 py-4 pl-6 nav-item">
             <!-- <i class="fas fa-sign-out "></i> -->

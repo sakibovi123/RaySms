@@ -46,7 +46,7 @@ class CustomerController extends Controller
         {
             $customer->customer_phone = $customer_phone;
             $customer->data_list_id = $data_list_id;
-
+            $customer->is_active = 0;
             $customer->save();
 
             return back()->with("message", "Number added");

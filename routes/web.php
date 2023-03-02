@@ -97,6 +97,12 @@ Route::group(["middleware" => "auth"], function () {
     Route::delete("/remove-list/{list_id}", [\App\Http\Controllers\DataListController::class, "remove"])->name("remove-list");
     Route::get("/remove-all-list", [\App\Http\Controllers\DataListController::class, "delete_all"])->name("delete-all-list");
 
+    // roles url
+    Route::get("/roles", [\App\Http\Controllers\RoleController::class, "get_all_roles"])->name("roles");
+    Route::get("/create-roles", [\App\Http\Controllers\RoleController::class, "create_role_permission"])->name("create_role");
+    Route::get("/edit-role", [\App\Http\Controllers\RoleController::class, "edit_role_permission"])->name("edit_role_permission");
+    Route::put("/update-role", [\App\Http\Controllers\RoleController::class, "update_role_permission"])->name("update_role_permission");
+    Route::delete("/delete-role", [\App\Http\Controllers\RoleController::class, "remove_role_permission"])->name("remove_role_permission");
 
     // testing sms automation
     Route::post("/auto-message", [\App\Http\Controllers\SendMessageController::class, "send_sms_automatically"]);

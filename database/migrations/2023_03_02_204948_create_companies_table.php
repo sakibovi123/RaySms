@@ -1,6 +1,5 @@
 <?php
 
-use App\Models\Customer;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
@@ -14,12 +13,15 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('data_lists', function (Blueprint $table) {
+        Schema::create('companies', function (Blueprint $table) {
             $table->id();
             $table->timestamps();
-            $table->string("list_id", 11);
-            $table->string("title", 255);
-            
+            $table->foreignIdFor(\App\Models\User::class);
+            $table->string("company_name", 255);
+            $table->string("company_email", 255);
+            $table->string("logo", 255);
+            $table->string("phone_number", 255);
+            $table->string("website", 255)->nullable();
         });
     }
 
@@ -30,6 +32,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('data_lists');
+        Schema::dropIfExists('companies');
     }
 };

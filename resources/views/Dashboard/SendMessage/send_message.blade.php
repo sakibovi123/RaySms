@@ -41,7 +41,9 @@
                         <div class="mb-6">
                             <label for="message" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Select Campaign</label>
                             <select required name="list" id="data-list" class="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 dark:shadow-sm-light">
+                                <option value="" selected>Select Campaign</option>
                                 @foreach($lists as $list)
+
                                     <option value="{{ $list->id }}">{{ $list->title }}</option>
                                 @endforeach
                             </select>
@@ -83,13 +85,15 @@
 <script type="text/javascript">
 
     $(document).ready(function () {
+        console.log("Processing")
         $("#data-list").on('change', function (){
             var listId = this.value;
             $('#customer_numbers').html('');
             $.ajax({
                 url: "{{ url('/get-customer-numbers/') }}/"+listId,
-                type: 'get',
+                type: 'GET',
                 success: function (res){
+                    console.log(res)
                     // $('#customer_numbers').html('<option value="">Select Phone Numbers</option>');
                     $.each(res, function (key, value){
                         $('#customer_numbers').append('<option value="' + value

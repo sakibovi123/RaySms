@@ -10,7 +10,7 @@ use App\Models\SendNumberModel;
 use Exception;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
-use Twilio\Rest\Client;
+use SignalWire\Rest\Client;
 
 
 class SendMessageController extends Controller
@@ -41,7 +41,7 @@ class SendMessageController extends Controller
     // getting all numbers by datalist
     public function get_numbers($list_id): \Illuminate\Http\JsonResponse
     {
-        $customers = Customer::where("data_list_id", "=", $list_id)
+        $customers = Customer::where("data_list_id", $list_id)
             ->where("is_active", "=", 0)
             ->get();
         return response()
@@ -54,6 +54,11 @@ class SendMessageController extends Controller
     {
         $twilio_sid = getenv("TWILIO_SID");
         $twilio_token = getenv("TWILIO_TOKEN");
+
+        $signal_pid = "2fffaf01-354f-4579-b62e-60e8afab322c";
+        $signal_api = "PT92bd1e3454e65dba01cb8490faff3f8018b99125577a1994";
+        $SPACE_URL = "riponkumarakash.signalwire.com";
+
 
         $senderNumber = SendNumberModel::where("number", $request->get("sender_number"))->first();
         $sendmessage = new SendMessage();
@@ -69,13 +74,13 @@ class SendMessageController extends Controller
             $sendmessage->customer()->attach($customer->id);
             if ($customer->is_active == 0) {
                 try {
-                    $client = new Client($twilio_sid, $twilio_token);
+                    $client = new Client($signal_pid, $signal_api, array("signalwireSpaceUrl" => $SPACE_URL));
                     $client->messages->create(
                         $customer->customer_phone,
-                        [
-                            "from" => $senderNumber->number,
+                        array(
+                            "from" => "+13853604801",
                             "body" => $sendmessage->messageContent->content,
-                        ]
+                        )
                     );
                     $customer->is_active = 1;
                     $customer->save();
