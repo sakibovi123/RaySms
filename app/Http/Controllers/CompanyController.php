@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Interfaces\CompanyInterface;
+use App\Models\Company;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -47,5 +48,40 @@ class CompanyController extends Controller
     {
         $comp = $this->company->get_company_details($company_name);
         return view("", $comp);
+    }
+
+
+    public function edit($company_name)
+    {
+        $comp = $this->company->get_company_details($company_name);
+        return view("", [
+            "comp" => $comp
+        ]);
+    }
+
+
+    public function update(Request $request, $company_name)
+    {
+        $comp = $this->company->get_company_details($company_name);
+        $data = [
+            $comp->user_ud => $comp->user_id,
+            $comp->company_name => $request->get("company_name"),
+            $comp->company_email => $request->get("company_email"),
+            $comp->logo => $request->file("logo"),
+            $comp->phone_number => $request->get("phone_number"),
+            $comp->website => $request->get("website")
+        ];
+
+        $this->company->update_company_details($company_name, $data);
+
+        return back();
+    }
+
+
+    public function remove($company_id)
+    {
+//        $comp = Company::where("id", $company_id)->first();
+        $this->company->delete_company($company_id);
+        return back();
     }
 }
