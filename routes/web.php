@@ -2,6 +2,9 @@
 
 use Illuminate\Support\Facades\Route;
 
+Route::get("/landing", [\App\Http\Controllers\Customer\LandingController::class, "landing"]);
+
+
 // Auth Urls
 Route::group(["middleware" => "guest"], function(){
     Route::get("/register", [\App\Http\Controllers\Auth\AuthController::class, 'register']);

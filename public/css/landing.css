@@ -1,0 +1,327 @@
+*{
+    margin: 0;
+    padding: 0;
+}
+
+:root{
+    --primary-color: #fff;
+    --secondary-color: #2e2b2b;
+}
+.dark-theme{
+    --primary-color: #071123;
+    --secondary-color: #fff;
+}
+.light {
+    --mainColor: #64bcf4;
+    --hoverColor: #5bacdf;
+    --backgroundColor: #5bacdf;
+    --darkOne: #312f3a;
+    --darkTwo: #45424b;
+    --lightOne: #919191;
+    --lightTwo: #aaa;
+}
+.dark{
+    --mainColor: #64bcf4;
+    --hoverColor: #5bacdf;
+    --backgroundColor: #192e3a;
+    --darkOne: #f3f3f3;
+    --darkTwo: #fff;
+    --lightOne: #ccc;
+    --lightTwo: #e7e3e3;
+}
+.white-color{
+    background: var(--primary-color);
+}
+.black-color{
+    color: var(--secondary-color);
+}
+.container {
+    position: relative;
+    max-width: 81rem;
+    width: 100%;
+    margin: 0 auto;
+    padding: 0 3rem;
+    z-index: 10;
+}
+.bg-img{
+    background-image: url(assets/bgPrice-home.webp);
+    background-repeat: no-repeat;
+}
+.below-img{
+    background: url(assets/footer-image-desktop.jpg) no-repeat scroll top center;
+    /* background-size: contain; */
+    border-top-right-radius: 150px;
+    /* border-top-left-radius: 50px; */
+}
+.bg-color{
+    background-image: linear-gradient(180deg,#e9eef3,#e9eef3,#f5f6f9,#fafafc,#fff);
+}
+
+.toggle-btn{
+    display: inline-block;
+    border: none;
+    background: var(--darkTwo);
+    color: var(--backgroundColor);
+    outline: none;
+    cursor: pointer;
+    height: 39px;
+    width: 39px;
+    border-radius: 50%;
+    font-size: 1.1rem;
+    transition: 0.3s;
+}
+
+.toggle-btn i{
+    line-height: 39px;
+}
+
+.toggle-btn i:last-child{
+display: none;
+}
+
+.toggle-btn:hover{
+    background: var(--mainColor);
+}
+
+.big-wrapper.light .toggle-btn i:last-child {
+    display: none;
+}
+
+.big-wrapper.light .toggle-btn i:first-child {
+    display: block;
+}
+
+.big-wrapper.dark .toggle-btn i:last-child {
+    display: block;
+}
+
+.big-wrapper.dark .toggle-btn i:first-child{
+    display: none;
+}
+
+.copy {
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 100;
+}
+
+.ol-article{
+        display: block;
+        list-style-type: decimal;
+        /* list-style-type: disc; */
+        margin-block-start: 1em;
+        margin-block-end: 1em;
+        /* margin-inline-start: 0px;
+        margin-inline-end: 0px; */
+        padding-inline-start: 40px;
+}
+.square-list{
+        display: block;
+        list-style-type: square;
+        margin-block-start: 1em;
+        margin-block-end: 1em;
+        padding-inline-start: 40px;
+}
+/* ------------ */
+
+#icon{
+    width: 40px;
+    height: 30px;
+    cursor: pointer;
+    margin-left: 10px;
+    margin-right: 10px;
+    margin-top: 6px;
+}
+/* pricing */
+
+/* .pricing-header {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.pricing-table-container h2 {
+    margin-right: 32px;
+    font-size: 24px;
+}
+
+.pricing-table-container .plans-switch {
+    width: 250px;
+    background: var(--dark-blue);
+    height: 55px;
+    appearance: none;
+    border-radius: 24px;
+    outline: none;
+    cursor: pointer;
+    position: relative;
+}
+.pricing-table-container .plans-switch-container {
+    position: relative;
+    color: #fff;
+    display: inline-block;
+}
+
+.pricing-table-container .plans-switch-container .monthly {
+    position: absolute;
+    left: 36px;
+    top: 18px;
+    pointer-events: none;
+}
+
+.pricing-table-container .plans-switch-container .yearly {
+    position: absolute;
+    right: 36px;
+    top: 18px;
+    pointer-events: none;
+}
+
+.pricing-table-container .plans-switch::before {
+    content: "";
+    position: absolute;
+    height: 44px;
+    width: 120px;
+    border-radius: 24px;
+    background: var(--green);
+    top: 50%;
+    transform: translateY(-50%);
+    left: 6px;
+    transition: all 0.5s;
+}
+
+.pricing-table-container .plans-switch:checked::before {
+    left: 138px;
+    width: 106px;
+} */
+
+
+.gradient{
+    background: linear-gradient(
+    to right,
+    #002F42,
+    #00C1C6,
+    #002F42
+  );
+}
+.combined {
+    color: transparent;
+    -webkit-text-stroke: 2px #002F42;
+    text-stroke: 2px #fff;
+ }
+
+
+ .containered{
+    height: 58vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.board{
+    max-width: 987px;
+    width: 100%;
+    background-image: linear-gradient(180deg,#e9eef3,#e9eef3,#f5f6f9,#fafafc,#fff);
+    text-align: center;
+    border-radius: 8px;
+    padding-top: 4em;
+}
+
+.text-light{
+    color: #002F42;
+}
+
+.swiper {
+    width: 600px;
+    /* height: auto; */
+    height: 38vh;
+  }
+
+.swiper .swiper-slide .flex{
+    margin: 3em 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.swiper .swiper-slide .comments{
+    background-color: #002F42;
+    color: #fff;
+    padding: 1.5em 2em;
+    width: 50%;
+    border-radius: 5px;
+    font-size: .9em;
+    position: relative;
+}
+
+.swiper .swiper-slide .comments::after{
+    content: '';
+    position: absolute;
+    bottom: -19px;
+    left: 45%;
+    width: 0;
+    height: 0;
+    border-left: 20px solid transparent;
+    border-right: 20px solid transparent;
+    border-top: 20px solid #002F42;
+    z-index: -99;
+}
+
+
+.swiper .profile{
+    display: flex;
+    flex-direction: column;
+    /* align-items: center; */
+    margin-top: 1em;
+}
+
+.swiper .profile img{
+    width: 30%;
+    border-radius: 50%;
+    border: 5px solid #EE709D;
+    margin: 10px 0;
+}
+
+.swiper .profile > a{
+    text-decoration: none;
+    color: #002F42;
+}
+
+.swiper .profile > span{
+    color: #002F42;
+    font-size: .8em;
+}
+
+.swiper .swiper-button-prev, .swiper-button-next{
+    color: #002F42;
+    display: none;
+} 
+
+@media (min-width: 320px) {
+    .board{
+        width: auto;
+    }
+
+    .swiper {
+        width: 320px;
+      }
+
+      .board > h1, p{
+          padding: 0 2em;
+      }
+}
+
+@media (min-width: 768px) {
+    .board{
+        width: 100%;
+    }
+
+    .swiper {
+        width: 600px;
+      }
+
+    .swiper .swiper-button-prev, .swiper-button-next{
+        display: initial;
+    }
+
+}
